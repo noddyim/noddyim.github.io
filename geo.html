@@ -7,7 +7,7 @@ function getLocation() {
     x.innerHTML = "Geolocation is not supported by this browser.";
   }
 }
-function showError(error) {
+/*function showError(error) {
   switch(error.code) {
     case error.PERMISSION_DENIED:
       x.innerHTML = "User denied the request for Geolocation."
@@ -22,12 +22,11 @@ function showError(error) {
       x.innerHTML = "An unknown error occurred."
       break;
   }
-}
+}*/
 function showPosition(position) {
   var latlon = position.coords.latitude + "," + position.coords.longitude;
 
-  var img_url = "https://maps.googleapis.com/maps/api/staticmap?center=
-  "+latlon+"&zoom=14&size=400x300&sensor=false&key=YOUR_KEY";
+  var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false&key=YOUR_KEY";
 
   document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
 }
