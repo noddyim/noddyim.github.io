@@ -1,38 +1,120 @@
-<script>
 $(document).ready(function(){
-  var move = 1;
-  var turn = true;
-  $("#dashboard tr td").click(function() {
-    if ($(this).text()=="" && turn) {
-      if ((move%2)==1) { $(this).append("X"); } 
-      else { $(this).append("O"); }
-      move++;
-      if (ForWinner()!=-1 && ForWinner()!="") { 
-        if (ForWinner()=="X") { alert("Player 1 wins!"); }
-        else { alert("Player 2 wins!"); }
-        turn = false; 
-      }
-    } 
-  });
-              function ForWinner() {
-    var field1 = $("#dashboard tr:nth-child(1) td:nth-child(1)").text();
-    var field2 = $("#dashboard tr:nth-child(1) td:nth-child(2)").text();
-    var field3 = $("#dashboard tr:nth-child(1) td:nth-child(3)").text();
-    var field4 = $("#dashboard tr:nth-child(2) td:nth-child(1)").text();
-    var field5 = $("#dashboard tr:nth-child(2) td:nth-child(2)").text();
-    var field6 = $("#dashboard tr:nth-child(2) td:nth-child(3)").text();
-    var field7 = $("#dashboard tr:nth-child(3) td:nth-child(1)").text();
-    var field8 = $("#dashboard tr:nth-child(3) td:nth-child(2)").text();
-    var field9 = $("#dashboard tr:nth-child(3) td:nth-child(3)").text();
-    if  ((field1==field2)&&(field2==field3)) { return field3; }
-    else if ((field4==field5)&&(field5==field6)) { return field6; }
-    else if ((field7==field8)&&(field8==field9)) { return field9; }
-    else if ((field1==field4)&&(field4==field7)) { return field7; }
-    else if ((field2==field5)&&(field5==field8)) { return field8; }
-    else if ((field3==field6)&&(field6==field9)) { return field9; }
-    else if ((field1==field5)&&(field5==field9)) { return field9; }
-    else if ((field3==field5)&&(field5==field7)) { return field7; }
-    return -1;
+var turns = ["#","#","#","#","#","#","+","#"];
+var computerTurn = "";
+var turn = "";
+var gameOn = false;
+var count = 0;
+
+var startTurn = prompt("Choose Your Move", "Type X or O").toUpperCase();
+switch (startTurn) {
+    case "X":
+        computerTurn = "O";
+        turn = "X";
+        $("#message").html("Player " + turn + " gets to start!");
+        break;
+    case "O":
+        computerTurn = "X";
+        turn = "O";
+        $("#message").html("Player " + turn + " gets to start!");
+        break;
+    case null:
+        alert("Sorry. Please type X or O");
+        window.location.reload(true);
+    break;
+    default:
+        alert("Sorry. Please type X or O");
+        window.location.reload(true);
+        break;
+}
+
+function computersTurn() {
+    var taken = false;
+    while (taken === false && count !== 5) {
+        var computerMove = (Math.random() * 10).toFixed();
+        var move = $("#" + computerMove).text();
+        if (move === "#") {
+            $("#" + computerMove).text(computerTurn);
+            taken = true;
+            turns[computerMove] = computerTurn;
+        }
+    }
+}
+
+function playerTurn (turn, id){
+  var spotTaken = $("#"+id).text();
+  if (spotTaken ==="#"){
+    count++;
+    turns[id] = turn;
+    $("#"+id).text(turn);
+    winCondition(turns,turn);
+    if (gameOn === false){
+      computersTurn();
+      $("#message").html("It's " + turn +"'s turn.");
+      winCondition(turns, computerTurn);
+    }
   }
+}
+
+function winCondition(trackMoves, currentMove) {
+    if (trackMoves[0] === currentMove && trackMoves[1] === currentMove && trackMoves[2] === currentMove) {
+        gameOn = true;
+        reset();
+        alert("Player " + currentMove + " wins!");
+    } else if (trackMoves[2] === currentMove && trackMoves[4] === currentMove && trackMoves[6] === currentMove) {
+        gameOn = true;
+        reset();
+        alert("Player " + currentMove + " wins!");
+    } else if (trackMoves[0] === currentMove && trackMoves[3] === currentMove && trackMoves[6] === currentMove) {
+        gameOn = true;
+        reset();
+        alert("Player " + currentMove + " wins!");
+    } else if (trackMoves[0] === currentMove && trackMoves[4] === currentMove && trackMoves[8] === currentMove) {
+        gameOn = true;
+        reset();
+        alert("Player " + currentMove + " wins!");
+    } else if (trackMoves[1] === currentMove && trackMoves[4] === currentMove && trackMoves[7] === currentMove) {
+        gameOn = true;
+        reset();
+        alert("Player " + currentMove + " wins!");
+    } else if (trackMoves[2] === currentMove && trackMoves[5] === currentMove && trackMoves[8] === currentMove) {
+        gameOn = true;
+        reset();
+        alert("Player " + currentMove + " wins!");
+    } else if (trackMoves[2] === currentMove && trackMoves[5] === currentMove && trackMoves[8] === currentMove) {
+        gameOn = true;
+        reset();
+        alert("Player " + currentMove + " wins!");
+    } else if (trackMoves[3] === currentMove && trackMoves[4] === currentMove && trackMoves[5] === currentMove) {
+        gameOn = true;
+        reset();
+        alert("Player " + currentMove + " wins!");
+    } else if (trackMoves[6] === currentMove && trackMoves[7] === currentMove && trackMoves[8] === currentMove) {
+        gameOn = true;
+        reset();
+        alert("Player " + currentMove + " wins!");
+    } else if(!(trackMoves.includes("#"))){
+       gameOn = true;
+      reset();
+      alert("It is a Draw!");
+    }﻿ else {
+        gameOn = false;
+    }
+}
+
+$(".tic").click(function(){
+  var slot = $(this).attr('id');
+  playerTurn(turn,slot);
 });
-</script>  
+
+function reset(){
+  turns = ["#","#","#","#","#","#","+","#"];
+  count = 0;
+  $(".tic").text("#");
+  gameOn = true;
+}
+
+$("#reset").click(function(){
+  reset();
+});
+
+});
