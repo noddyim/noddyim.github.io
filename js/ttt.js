@@ -4,23 +4,25 @@ var computerTurn = "";
 var turn = "";
 var gameOn = false;
 var count = 0;
-var hard = document.getElementById("hardMode").checked;
+var hard = false;
 
 var startTurn = prompt("Choose Your Move", "Type X or O").toUpperCase();
 switch (startTurn) {
     case "X":
         computerTurn = "O";
         turn = "X";
-        $("#message").html("Click Checkbox for hard mode. Player " + turn + " gets to start!");
+        $("#message").html("Player " + turn + " gets to start!");
+        $("#hardMessage").html("Easy Mode.");
         //hardMove();
-        computerPlay(0);
+        //computerPlay(0);
         break;
     case "O":
         computerTurn = "X";
         turn = "O";
-        $("#message").html("Click Checkbox for hard mode. Player " + turn + " gets to start!");
+        $("#message").html("Player " + turn + " gets to start!");
+        $("#hardMessage").html("Easy Mode.");
         //hardMove();
-        computerPlay(0);
+        //computerPlay(0);
         break;
     case null:
         alert("Sorry. Please type X or O");
@@ -291,52 +293,102 @@ function winCondition(trackMoves, currentMove) {
     //checks for win accross top
     if (trackMoves[0] === currentMove && trackMoves[1] === currentMove && trackMoves[2] === currentMove) {
         gameOn = true;
-        reset();
+        if(hard){
+            resetHard();
+        }
+        else{
+            reset();
+        }
         alert("Player " + currentMove + " wins!");
         //checks for win diagonal right to left
     } else if (trackMoves[2] === currentMove && trackMoves[4] === currentMove && trackMoves[6] === currentMove) {
         gameOn = true;
-        reset();
+        if(hard){
+            resetHard();
+        }
+        else{
+            reset();
+        }
         alert("Player " + currentMove + " wins!");
         //checks for win vertical first row
     } else if (trackMoves[0] === currentMove && trackMoves[3] === currentMove && trackMoves[6] === currentMove) {
         gameOn = true;
-        reset();
+        if(hard){
+            resetHard();
+        }
+        else{
+            reset();
+        }
         alert("Player " + currentMove + " wins!");
         //checks for win diagonal upper left to bottom right
     } else if (trackMoves[0] === currentMove && trackMoves[4] === currentMove && trackMoves[8] === currentMove) {
         gameOn = true;
-        reset();
+        if(hard){
+            resetHard();
+        }
+        else{
+            reset();
+        }
         alert("Player " + currentMove + " wins!");
         //checks win vertical middle row
     } else if (trackMoves[1] === currentMove && trackMoves[4] === currentMove && trackMoves[7] === currentMove) {
         gameOn = true;
-        reset();
+        if(hard){
+            resetHard();
+        }
+        else{
+            reset();
+        }
         alert("Player " + currentMove + " wins!");
         //checks win vertical last row
     } else if (trackMoves[2] === currentMove && trackMoves[5] === currentMove && trackMoves[8] === currentMove) {
         gameOn = true;
-        reset();
+        if(hard){
+            resetHard();
+        }
+        else{
+            reset();
+        }
         alert("Player " + currentMove + " wins!");
         //checks win vertical last row again!?
     } else if (trackMoves[2] === currentMove && trackMoves[5] === currentMove && trackMoves[8] === currentMove) {
         gameOn = true;
-        reset();
+        if(hard){
+            resetHard();
+        }
+        else{
+            reset();
+        }
         alert("Player " + currentMove + " wins!");
         //checks win horizontal middle row
     } else if (trackMoves[3] === currentMove && trackMoves[4] === currentMove && trackMoves[5] === currentMove) {
         gameOn = true;
-        reset();
+        if(hard){
+            resetHard();
+        }
+        else{
+            reset();
+        }
         alert("Player " + currentMove + " wins!");
         //checks win horizontal bottom row
     } else if (trackMoves[6] === currentMove && trackMoves[7] === currentMove && trackMoves[8] === currentMove) {
         gameOn = true;
-        reset();
+        if(hard){
+            resetHard();
+        }
+        else{
+            reset();
+        }
         alert("Player " + currentMove + " wins!");
         //if all the spots were taken its a draw
     } else if(!(trackMoves.includes("#"))){
        gameOn = true;
-      reset();
+      if(hard){
+            resetHard();
+        }
+        else{
+            reset();
+        }
       alert("It is a Draw!(Cats Game)");
     } else {
         gameOn = false;
@@ -356,6 +408,24 @@ $(".tic").click(function(){
   //}
    
 });
+function resetHard(){
+    //assign all the elements in the array to be #
+  turns = ["#","#","#","#","#","#","+","#"];
+  //change the count to 0 moves
+  count = 0;
+  //change the positions to be #
+  $(".tic").text("#");
+  //switch the game on to be true
+  gameOn = true;
+  $("#hardMessage").html("You are playing in Hard Mode.");
+  hard = true;
+  computerPlay(0);
+}
+
+$("#hardMode").click(function(){
+  resetHard();
+    });
+
 //reset the game
 function reset(){
     //assign all the elements in the array to be #
@@ -366,6 +436,7 @@ function reset(){
   $(".tic").text("#");
   //switch the game on to be true
   gameOn = true;
+  hard = false;
 }
 //if reset button is clicked on html run reset function
 $("#reset").click(function(){
