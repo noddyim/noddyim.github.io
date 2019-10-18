@@ -34,6 +34,7 @@ function computersTurn() {
     while (taken === false && count !== 5) {
         //create a random number from 0-9 for the computer choose a spot
         var computerMove = (Math.random() * 10).toFixed();
+        alert("comp move:"+computerMove);
         //create move for the random number
         var move = $("#" + computerMove).text();
         //if the computers move has a # as its value then we can place their move there
@@ -126,10 +127,10 @@ function smartMove(){
         } else if(turns[2] === turn && turns[8] === turn && 
             turns[5] !== turn && turns[5] !== computerMove){
             computerMove = 5;
-        } else if(count>1){
+        } else {//if(count>1){
             computersTurn();
         }
-
+        alert("smart comp move:"+computerMove);
         var move = $("#" + computerMove).text();
         //if the computers move has a # as its value then we can place their move there
         if (move === "#") {
