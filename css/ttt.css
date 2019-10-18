@@ -17,6 +17,11 @@ h1{
   padding-bottom: 40px;
   border-radius: 10px;
 }
+#hardMessage{
+  background: #333;
+  color: #fff;
+  text-align: center;
+}
 #message{
   background: #333;
   color: #fff;
@@ -46,7 +51,7 @@ h1{
   padding: 15px;
   border-radius: 5px;
 }
-#submit{
+#hardMode{
   border: 0;
   background: #444;
   color: #fff;
