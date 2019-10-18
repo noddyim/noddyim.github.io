@@ -27,14 +27,13 @@ switch (startTurn) {
         break;
 }
 
-function computersTurn() {
+/*function computersTurn() {
     //establish variable saying the computer has not gone yet
     var taken = false;
     //while computer hasn't gone and game is not over (computer can only go 4 times)
     while (taken === false && count !== 5) {
         //create a random number from 0-9 for the computer choose a spot
         var computerMove = (Math.random() * 10).toFixed();
-        alert("comp move:"+computerMove);
         //create move for the random number
         var move = $("#" + computerMove).text();
         //if the computers move has a # as its value then we can place their move there
@@ -47,12 +46,12 @@ function computersTurn() {
             turns[computerMove] = computerTurn;
         }
     }
-}
+}*/
 
 function smartMove(){
     var taken = false;
     while (taken === false && count !== 5) {
-        
+        alert("in while for smart move");
         if(turns[4] !== turn && turns[4] !== computerTurn){
             computerMove = 4;
         } else if(turns[0] === turn && turns[1] === turn && 
@@ -127,10 +126,9 @@ function smartMove(){
         } else if(turns[2] === turn && turns[8] === turn && 
             turns[5] !== turn && turns[5] !== computerMove){
             computerMove = 5;
-        } else {//if(count>1){
-            computersTurn();
+        } else {
+            computerMove = (Math.random() * 10).toFixed();
         }
-        alert("smart comp move:"+computerMove);
         var move = $("#" + computerMove).text();
         //if the computers move has a # as its value then we can place their move there
         if (move === "#") {
