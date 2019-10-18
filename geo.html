@@ -46,18 +46,8 @@ function showError(error) {
       break;
   }
 }
-</script>
-<form id="mapCenterForm" onsubmit="initialize()">
-    Lat: <input type="text" id="lat" />
-    <br />
-    Lng: <input type="text" id="lng" />
-    <br />
-    <input type="submit" value="Center map" />
-</form>
-<br />
-<div id="map-canvas"></div>
-<script>
-  // Calculate maximum latitude value on mercator projection
+  
+ // Calculate maximum latitude value on mercator projection
 var maxLat = Math.atan(Math.sinh(Math.PI)) * 180 / Math.PI;
 
 function initialize() {
@@ -121,6 +111,15 @@ function lngRange(n) {
 }
 
 initialize();
-  </script>
+</script>
+<form id="mapCenterForm" onsubmit="initialize()">
+    Lat: <input type="text" id="lat" />
+    <br />
+    Lng: <input type="text" id="lng" />
+    <br />
+    <input type="submit" value="Center map" />
+</form>
+<br />
+<div id="map-canvas"></div>
 </body>
 </html>
