@@ -12,11 +12,15 @@ switch (startTurn) {
         computerTurn = "O";
         turn = "X";
         $("#message").html("Click Checkbox for hard mode. Player " + turn + " gets to start!");
+        //hardMove();
+        computerPlay(0);
         break;
     case "O":
         computerTurn = "X";
         turn = "O";
         $("#message").html("Click Checkbox for hard mode. Player " + turn + " gets to start!");
+        //hardMove();
+        computerPlay(0);
         break;
     case null:
         alert("Sorry. Please type X or O");
@@ -50,22 +54,20 @@ switch (startTurn) {
 }*/
 function hardMove(){
     var taken = false;
-    while (taken === false && count !== 5) {
-
-        if(count === 0){
-            computerMove = 0;
-        }
+    while (taken === false && count !== 9) {
+        //if(count === 0){
+          //  computerMove = 0;
+        //}
         if( count === 2 && turns[8] !== turn &&
-            turns[8] !== computerTurn){
+            turns[8] === "#"){//!== computerTurn){
                 computerMove = 8;
         } else if( count === 2 && turns[2] !== turn &&
-            turns[2] !== computerTurn){
+            turns[2] === "#"){//!== computerTurn){
                 computerMove = 2;
         } else if( count === 2 && turns[6] !== turn &&
-            turns[6] !== computerTurn){
+            turns[6] === "#"){//!== computerTurn){
                 computerMove = 6;
-        }
-        if( count === 4 && turns[4] === turn &&
+        } else if( count === 4 && turns[4] === turn &&
             turns[7] === turn){
                 smartMove();
         } else if( count === 4 && turns[4] === turn &&
@@ -97,8 +99,7 @@ function hardMove(){
         } else if( count === 4 && turns[2] === computerTurn &&
             turns[8] !== turn){
                 computerMove = 8;
-        }
-        if( count === 6 && turns[8] === computerTurn &&
+        } else if( count === 6 && turns[8] === computerTurn &&
             turns[6] === computerTurn &&
             turns[7] !== turn && turns[7] !== computerTurn){
                 computerMove = 7;
@@ -136,111 +137,120 @@ function hardMove(){
                 computerMove = 1;
         } else if(count === 6 && turns[4] === turn){
             smartMove();
-        }else if(count === 6 && turns[4] === computerTurn){
+        } else if(count === 6 && turns[4] === computerTurn){
             smartMove();
-        }else if(counter === 8){
+        } else if(counter === 8){
             smartMove();
+        } else {
+            //alert("doing random move");
+            computerMove = (Math.random() * 9).toFixed();
+            //alert("random move:"+computerMove);
         }
-        computerPlay(computerMove);
-        taken = true;
+        //alert("end of hardmove");
+        var move = $("#" + computerMove).text();
+        //alert("move:"+move+" comp move:"+computerMove);
+        if(move === "#"){
+            taken = true;
+            computerPlay(computerMove);
+        } 
     }
 }
 
 function smartMove(){
     var taken = false;
-    while (taken === false && count !== 5) {
+    while (taken === false && count !== 9) {
         if(turns[4] !== turn && turns[4] !== computerTurn){
             computerMove = 4;
         } else if(turns[0] === turn && turns[1] === turn && 
-            turns[2] !== turn && turns[2] !== computerMove){
+            turns[2] === "#"){//!== turn && turns[2] !== computerMove){
             computerMove = 2;
         } else if(turns[1] === turn && turns[2] === turn &&
-            turns[0] !== turn && turns[0] !== computerMove){
+            turns[0] === "#"){//&& turns[0] !== computerMove){
             computerMove = 0;
         } else if(turns[0] === turn && turns[2] === turn && 
-            turns[1] !== turn && turns[1] !== computerMove){
+            turns[1] === "#"){//&& turns[1] !== computerMove){
             computerMove = 1;
         } else if(turns[3] === turn && turns[4] === turn && 
-            turns[5] !== turn && turns[5] !== computerMove){
+            turns[5] === "#"){//&& turns[5] !== computerMove){
             computerMove = 5;
         } else if(turns[4] === turn && turns[5] === turn && 
-            turns[3] !== turn && turns[3] !== computerMove){
+            turns[3] === "#"){//&& turns[3] !== computerMove){
             computerMove = 3;
         } else if(turns[3] === turn && turns[5] === turn && 
-            turns[4] !== turn && turns[4] !== computerMove){
+            turns[4] === "#"){//&& turns[4] !== computerMove){
             computerMove = 4;
         } else if(turns[6] === turn && turns[7] === turn && 
-            turns[8] !== turn && turns[8] !== computerMove){
+            turns[8] === "#"){//!== turn && turns[8] !== computerMove){
             computerMove = 8;
-        } else if(turns[7] === turn && turns[6] === turn && 
-            turns[6] !== turn && turns[6] !== computerMove){
+        } else if(turns[7] === turn && turns[8] === turn && 
+            turns[6] === "#"){//!== turn && turns[6] !== computerMove){
             computerMove = 6;
         } else if(turns[6] === turn && turns[8] === turn && 
-            turns[7] !== turn && turns[7] !== computerMove){
+            turns[7] === "#"){//!== turn && turns[7] !== computerMove){
             computerMove = 7;
         } else if(turns[0] === turn && turns[4] === turn && 
-            turns[8] !== turn && turns[8] !== computerMove){
+            turns[8] === "#"){//!== turn && turns[8] !== computerMove){
             computerMove = 8;
         } else if(turns[4] === turn && turns[8] === turn && 
-            turns[0] !== turn && turns[0] !== computerMove){
+            turns[0] === "#"){//!== turn && turns[0] !== computerMove){
             computerMove = 0;
         } else if(turns[0] === turn && turns[8] === turn && 
-            turns[4] !== turn && turns[4] !== computerMove){
+            turns[4] === "#"){//!== turn && turns[4] !== computerMove){
             computerMove = 4;
         } else if(turns[2] === turn && turns[4] === turn && 
-            turns[6] !== turn && turns[6] !== computerMove){
+            turns[6] === "#"){//!== turn && turns[6] !== computerMove){
             computerMove = 6;
         } else if(turns[4] === turn && turns[6] === turn && 
-            turns[2] !== turn && turns[2] !== computerMove){
+            turns[2] === "#"){//!== turn && turns[2] !== computerMove){
             computerMove = 2;
         } else if(turns[2] === turn && turns[6] === turn && 
-            turns[4] !== turn && turns[4] !== computerMove){
+            turns[4] === "#"){//!== turn && turns[4] !== computerMove){
             computerMove = 4;
         } else if(turns[0] === turn && turns[3] === turn && 
-            turns[6] !== turn && turns[6] !== computerMove){
+            turns[6] === "#"){//!== turn && turns[6] !== computerMove){
             computerMove = 6;
         } else if(turns[3] === turn && turns[6] === turn && 
-            turns[0] !== turn && turns[0] !== computerMove){
+            turns[0] === "#"){//!== turn && turns[0] !== computerMove){
             computerMove = 0;
         } else if(turns[0] === turn && turns[6] === turn && 
-            turns[3] !== turn && turns[3] !== computerMove){
+            turns[3] === "#"){//!== turn && turns[3] !== computerMove){
             computerMove = 3;
         } else if(turns[1] === turn && turns[4] === turn && 
-            turns[7] !== turn && turns[7] !== computerMove){
+            turns[7] === "#"){//!== turn && turns[7] !== computerMove){
             computerMove = 7;
         } else if(turns[4] === turn && turns[7] === turn && 
-            turns[1] !== turn && turns[1] !== computerMove){
+            turns[1] === "#"){//!== turn && turns[1] !== computerMove){
             computerMove = 1;
         } else if(turns[1] === turn && turns[7] === turn && 
-            turns[4] !== turn && turns[4] !== computerMove){
+            turns[4] === "#"){//!== turn && turns[4] !== computerMove){
             computerMove = 4;
         } else if(turns[2] === turn && turns[5] === turn && 
-            turns[8] !== turn && turns[8] !== computerMove){
+            turns[8] === "#"){//!== turn && turns[8] !== computerMove){
             computerMove = 8;
         } else if(turns[5] === turn && turns[8] === turn && 
-            turns[2] !== turn && turns[2] !== computerMove){
+            turns[2] === "#"){//!== turn && turns[2] !== computerMove){
             computerMove = 2;
         } else if(turns[2] === turn && turns[8] === turn && 
-            turns[5] !== turn && turns[5] !== computerMove){
+            turns[5] === "#"){//!== turn && turns[5] !== computerMove){
             computerMove = 5;
         } else {
-            computerMove = (Math.random() * 10).toFixed();
+            //alert("doing random move");
+            computerMove = (Math.random() * 9).toFixed();
+            //alert("random move:"+computerMove);
         }
-        taken = true;
-        computerPlay(computerMove);
+        var move = $("#" + computerMove).text();
+        //alert("move:"+move+" comp location:"+computerMove+" count:"+count);
+        if(move === "#"){
+            taken = true;
+            computerPlay(computerMove);
+        }        
     }
 }
 function computerPlay(compMove){
-    var move = $("#" + compMove).text();
-        //if the computers move has a # as its value then we can place their move there
-        if (move === "#") {
-            //put the computers letter 
-            $("#" + computerMove).text(computerTurn);
-            //exits while loop because taken is true
-            //taken = true;
-            //put the computers letter in the array element it took
-            turns[computerMove] = computerTurn;
-        }
+    count++;
+    $("#" + compMove).text(computerTurn);
+    //put the computers letter in the array element it took
+    turns[compMove] = computerTurn;
 }
 
 function playerTurn (turn, id){
@@ -255,18 +265,20 @@ function playerTurn (turn, id){
     turns[id] = turn;
     //change the value of the text to the players letter
     $("#"+id).text(turn);
+    
     //check to see if someone won
     winCondition(turns,turn);
+    //alert("gameOn should be false:"+gameOn);
     //if nobody won let the computer choose their spot
     if (gameOn === false){
         //let the computer do a random move
       //computersTurn();
-      if(hard !== true){
-          smartMove();
-      }
-      else if(hard){
+      //if(hard !== true){
+        //  smartMove();
+      //}
+      //else if(hard){
           hardMove();
-      }
+      //}
       //state its the players turn
       $("#message").html("It's " + turn +"'s turn.");
       //check if the computers move was the winning move
@@ -332,15 +344,16 @@ function winCondition(trackMoves, currentMove) {
 }
 //if the user clicks on a # sign we make their move
 $(".tic").click(function(){
+    //alert("count:"+count);
     //create a variable to hold the position the user clicked on
   var slot = $(this).attr('id');
-  if(hard){
-    hardMove();
-  }
-  else if(!hard){
+  //if(hard){
+    //hardMove();
+  //}
+  //else if(!hard){
     //sent they array of turns and the users choice to the playerTurn function
     playerTurn(turn,slot);
-  }
+  //}
    
 });
 //reset the game
