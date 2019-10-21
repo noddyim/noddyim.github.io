@@ -1,5 +1,5 @@
 $(document).ready(function(){
-var turns = ["#","#","#","#","#","#","+","#"];
+var turns = ["#","#","#","#","#","#","#","#"];
 var computerTurn = "";
 var turn = "";
 var gameOn = false;
@@ -173,7 +173,7 @@ function hardMove(){
                 taken = true;
         } else {
             taken = true;
-            randomPlay();
+            randomHPlay();
         }        
     }
     //alert("end of hardmove");
@@ -290,7 +290,7 @@ function smartMove(){
             taken = true;
         } else {
             taken = true;
-            randomPlay();
+            randomSPlay();
         }            
     }
     var move = $("#" + computerMove).text();
@@ -301,7 +301,20 @@ function smartMove(){
             computerPlay(computerMove);
         }    
 }
-function randomPlay(){
+function randomSPlay(){
+    //alert("doing random move");
+    computerMove = (Math.random() * 9).toFixed();
+    //alert("random move:"+computerMove);
+    var move = $("#" + computerMove).text();
+    //alert("randSPlay move:"+move+" comp location:"+computerMove+" count:"+count);
+    if(move === "#"){
+        //taken = true;
+        computerPlay(computerMove);
+    } else if(move !== "#"){
+        smartMove();
+    }
+}
+function randomHPlay(){
     //alert("doing random move");
     computerMove = (Math.random() * 9).toFixed();
     //alert("random move:"+computerMove);
@@ -311,9 +324,8 @@ function randomPlay(){
         //taken = true;
         computerPlay(computerMove);
     } else if(move !== "#"){
-        randomPlay();
+        hardMove();
     }
-
 }
 function computerPlay(compMove){
     //count++;
@@ -461,6 +473,7 @@ function winCondition(trackMoves, currentMove) {
         else{
             reset();
         }
+      //alert("turns array:"+turns);
       alert("It is a Draw!(Cats Game)");
     } else {
         gameOn = false;
@@ -482,7 +495,7 @@ $(".tic").click(function(){
 });
 function resetHard(){
     //assign all the elements in the array to be #
-  turns = ["#","#","#","#","#","#","+","#"];
+  turns = ["#","#","#","#","#","#","#","#"];
   //change the count to 0 moves
   count = 0;
   //change the positions to be #
@@ -502,7 +515,7 @@ $("#hardMode").click(function(){
 //reset the game
 function reset(){
     //assign all the elements in the array to be #
-  turns = ["#","#","#","#","#","#","+","#"];
+  turns = ["#","#","#","#","#","#","#","#"];
   //change the count to 0 moves
   count = 0;
   //change the positions to be #
