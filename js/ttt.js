@@ -448,6 +448,7 @@ function playerTurn (turn, id){
     turns[id] = turn;
     //change the value of the text to the players letter
     $("#"+id).text(turn);
+    soundEffects();
     
     //check to see if someone won
     winCondition(turns,turn);
@@ -599,6 +600,13 @@ $(".tic").click(function(){
   //}
    
 });
+
+function soundEffects(){
+    alert("sound");
+    var x = document.getElementById("myAudio");
+
+    x.play();
+}
 function resetHard(){
     //assign all the elements in the array to be #
   turns = ["#","#","#","#","#","#","#","#","#"];
