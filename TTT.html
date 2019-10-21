@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/ttt.css">
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 <body>
 <div class="text-center"id="box">
@@ -27,14 +28,27 @@
     <li class="tic"id="8">#</li>
   </ul>
   <div class="clearfix"></div>
-  <audio id="myAudio">
+  <audio id="soundEffect">
     <source src="audio/Punch.wav" type="audio/wav">
     Your browser does not support the audio element.
   </audio>
+  <audio id="winner">
+    <source src="audio/winner.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="loser">
+    <source src="audio/loser.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="music">
+    <source src="audio/music.wav" type="audio/wav" loop>
+    Your browser does not support the audio element.
+  </audio>
 <footer>
-  <button id="playGame">PLAY</button>
   <button id="hardMode">Hard Mode</button>
   <button id="easyMode">Easy Mode</button>
+  <button id="playGame">PLAY</button>
+  <br><i class='fas fa-music' style='font-size:40px;color:white'><input type="checkbox" id="musicCheck"></i>
 </footer>
 </div>
     <script src="js/ttt.js"></script>
