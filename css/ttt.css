@@ -43,7 +43,15 @@ h1{
   cursor: pointer;
   background: #000;
 }
-#reset{
+#playGame{
+  border: 0;
+  background: #444;
+  color: #fff;
+  width: 70%;
+  padding: 15px;
+  border-radius: 5px;
+}
+#easyMode{
   border: 0;
   background: #444;
   color: #fff;
