@@ -59,6 +59,14 @@ h1{
   padding: 15px;
   border-radius: 5px;
 }
+#musicCheck{
+  border: 0;
+  background: #444;
+  color: white;
+  width: 35%;
+  padding: 15px;
+  border-radius: 5px;
+}
 #hardMode{
   border: 0;
   background: #444;

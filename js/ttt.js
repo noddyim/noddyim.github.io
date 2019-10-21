@@ -5,6 +5,7 @@ var turn = "";
 var gameOn = false;
 var count = 0;
 var hard = false;
+const checkbox = $("#musicCheck");
 
 document.body.onload = hideButtons();
 
@@ -488,6 +489,11 @@ function winCondition(trackMoves, currentMove) {
     //checks for win accross top
     if (trackMoves[0] === currentMove && trackMoves[1] === currentMove && trackMoves[2] === currentMove) {
         gameOn = true;
+        if(currentMove === turn){
+            winnerSound();
+        }else if(currentMove === computerTurn){
+            loserSound();
+        }
         if(hard){
             resetHard();
         }
@@ -498,6 +504,11 @@ function winCondition(trackMoves, currentMove) {
         //checks for win diagonal right to left
     } else if (trackMoves[2] === currentMove && trackMoves[4] === currentMove && trackMoves[6] === currentMove) {
         gameOn = true;
+        if(currentMove === turn){
+            winnerSound();
+        }else if(currentMove === computerTurn){
+            loserSound();
+        }
         if(hard){
             resetHard();
         }
@@ -508,6 +519,11 @@ function winCondition(trackMoves, currentMove) {
         //checks for win vertical first row
     } else if (trackMoves[0] === currentMove && trackMoves[3] === currentMove && trackMoves[6] === currentMove) {
         gameOn = true;
+        if(currentMove === turn){
+            winnerSound();
+        }else if(currentMove === computerTurn){
+            loserSound();
+        }
         if(hard){
             resetHard();
         }
@@ -518,6 +534,11 @@ function winCondition(trackMoves, currentMove) {
         //checks for win diagonal upper left to bottom right
     } else if (trackMoves[0] === currentMove && trackMoves[4] === currentMove && trackMoves[8] === currentMove) {
         gameOn = true;
+        if(currentMove === turn){
+            winnerSound();
+        }else if(currentMove === computerTurn){
+            loserSound();
+        }
         if(hard){
             resetHard();
         }
@@ -528,6 +549,11 @@ function winCondition(trackMoves, currentMove) {
         //checks win vertical middle row
     } else if (trackMoves[1] === currentMove && trackMoves[4] === currentMove && trackMoves[7] === currentMove) {
         gameOn = true;
+        if(currentMove === turn){
+            winnerSound();
+        }else if(currentMove === computerTurn){
+            loserSound();
+        }
         if(hard){
             resetHard();
         }
@@ -538,6 +564,11 @@ function winCondition(trackMoves, currentMove) {
         //checks win vertical last row
     } else if (trackMoves[2] === currentMove && trackMoves[5] === currentMove && trackMoves[8] === currentMove) {
         gameOn = true;
+        if(currentMove === turn){
+            winnerSound();
+        }else if(currentMove === computerTurn){
+            loserSound();
+        }
         if(hard){
             resetHard();
         }
@@ -548,6 +579,11 @@ function winCondition(trackMoves, currentMove) {
         //checks win vertical last row again!?
     } else if (trackMoves[2] === currentMove && trackMoves[5] === currentMove && trackMoves[8] === currentMove) {
         gameOn = true;
+        if(currentMove === turn){
+            winnerSound();
+        }else if(currentMove === computerTurn){
+            loserSound();
+        }
         if(hard){
             resetHard();
         }
@@ -558,6 +594,11 @@ function winCondition(trackMoves, currentMove) {
         //checks win horizontal middle row
     } else if (trackMoves[3] === currentMove && trackMoves[4] === currentMove && trackMoves[5] === currentMove) {
         gameOn = true;
+        if(currentMove === turn){
+            winnerSound();
+        }else if(currentMove === computerTurn){
+            loserSound();
+        }
         if(hard){
             resetHard();
         }
@@ -568,6 +609,11 @@ function winCondition(trackMoves, currentMove) {
         //checks win horizontal bottom row
     } else if (trackMoves[6] === currentMove && trackMoves[7] === currentMove && trackMoves[8] === currentMove) {
         gameOn = true;
+        if(currentMove === turn){
+            winnerSound();
+        }else if(currentMove === computerTurn){
+            loserSound();
+        }
         if(hard){
             resetHard();
         }
@@ -606,9 +652,26 @@ $(".tic").click(function(){
 });
 
 function soundEffects(){
-    var x = document.getElementById("myAudio");
+    var x = document.getElementById("soundEffect");
     x.play();
 }
+function winnerSound(){
+    var x = document.getElementById("winner");
+    x.play();
+}
+function loserSound(){
+    var x = document.getElementById("loser");
+    x.play();
+}
+/*function music(){
+    var x = document.getElementById("music");
+    var y = document.getElementById("musicCheck");
+    if(y.checked){
+        x.play();
+    } else if(y.checked===false){
+        x.src = "";
+    }
+}*/
 function resetHard(){
     //assign all the elements in the array to be #
   turns = ["#","#","#","#","#","#","#","#","#"];
@@ -650,6 +713,17 @@ function hideButtons(){
     document.getElementById("hardMode").disabled = true;
     document.getElementById("hardMode").style.visibility = "hidden";
 }
+
+checkbox.change(function(event) {
+    var checkbox = event.target;
+    var x = document.getElementById("music");
+
+    if (checkbox.checked) {
+        x.play();
+    } else {
+        x.src = "";
+    }
+});
 $("#playGame").click(function(){
     document.getElementById("playGame").disabled = true;
     document.getElementById("playGame").style.visibility = "hidden";
