@@ -1,5 +1,5 @@
 $(document).ready(function(){
-var turns = ["#","#","#","#","#","#","#","#"];
+var turns = ["#","#","#","#","#","#","#","#","#"];
 var computerTurn = "";
 var turn = "";
 var gameOn = false;
@@ -172,8 +172,8 @@ function hardMove(){
             smartMove();
                 taken = true;
         } else {
-            taken = true;
             randomHPlay();
+            taken = true;
         }        
     }
     //alert("end of hardmove");
@@ -186,7 +186,7 @@ function hardMove(){
 }
 
 function smartMove(){
-    //alert("smart move");
+    //alert("turns:"+turns);
     var taken = false;
     while (taken === false && count !== 10) {
         if(turns[4] === "#"){//!== turn && turns[4] !== computerTurn){
@@ -289,8 +289,8 @@ function smartMove(){
             computerMove = 5;
             taken = true;
         } else {
-            taken = true;
             randomSPlay();
+            taken = true;
         }            
     }
     var move = $("#" + computerMove).text();
@@ -334,6 +334,7 @@ function computerPlay(compMove){
     $("#" + compMove).text(computerTurn);
     //put the computers letter in the array element it took
     turns[compMove] = computerTurn;
+    winCondition(turns, computerTurn);
 }
 
 function playerTurn (turn, id){
@@ -364,7 +365,7 @@ function playerTurn (turn, id){
             count++;
             smartMove();
         }
-        
+        //alert("comp play count:"+count);
       //state its the players turn
       $("#message").html("It's " + turn +"'s turn.");
       //check if the computers move was the winning move
@@ -495,7 +496,7 @@ $(".tic").click(function(){
 });
 function resetHard(){
     //assign all the elements in the array to be #
-  turns = ["#","#","#","#","#","#","#","#"];
+  turns = ["#","#","#","#","#","#","#","#","#"];
   //change the count to 0 moves
   count = 0;
   //change the positions to be #
@@ -515,7 +516,7 @@ $("#hardMode").click(function(){
 //reset the game
 function reset(){
     //assign all the elements in the array to be #
-  turns = ["#","#","#","#","#","#","#","#"];
+  turns = ["#","#","#","#","#","#","#","#","#"];
   //change the count to 0 moves
   count = 0;
   //change the positions to be #
