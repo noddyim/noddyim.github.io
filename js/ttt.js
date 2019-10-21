@@ -602,9 +602,7 @@ $(".tic").click(function(){
 });
 
 function soundEffects(){
-    alert("sound");
     var x = document.getElementById("myAudio");
-
     x.play();
 }
 function resetHard(){
