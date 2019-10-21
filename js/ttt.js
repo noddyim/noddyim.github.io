@@ -1,4 +1,4 @@
-$(document).ready(function(){
+//$(document).ready(function(){
 var turns = ["#","#","#","#","#","#","#","#","#"];
 var computerTurn = "";
 var turn = "";
@@ -6,32 +6,36 @@ var gameOn = false;
 var count = 0;
 var hard = false;
 
-var startTurn = prompt("Choose Your Move", "Type X or O").toUpperCase();
-switch (startTurn) {
-    case "X":
-        computerTurn = "O";
-        turn = "X";
-        $("#message").html("Player " + turn + " gets to start!");
-        $("#hardMessage").html("Easy Mode.");
-        //hardMove();
-        //computerPlay(0);
+document.body.onload = hideButtons();
+
+function startGame(){
+    var startTurn = prompt("Choose Your Move", "Type X or O").toUpperCase();
+    switch (startTurn) {
+        case "X":
+            computerTurn = "O";
+            turn = "X";
+            $("#message").html("Player " + turn + " gets to start!");
+            $("#hardMessage").html("Easy Mode.");
+            //hardMove();
+            //computerPlay(0);
+            break;
+        case "O":
+            computerTurn = "X";
+            turn = "O";
+            $("#message").html("Player " + turn + " gets to start!");
+            $("#hardMessage").html("Easy Mode.");
+            //hardMove();
+            //computerPlay(0);
+            break;
+        case null:
+            alert("Sorry. Please type X or O");
+            window.location.reload(true);
         break;
-    case "O":
-        computerTurn = "X";
-        turn = "O";
-        $("#message").html("Player " + turn + " gets to start!");
-        $("#hardMessage").html("Easy Mode.");
-        //hardMove();
-        //computerPlay(0);
-        break;
-    case null:
-        alert("Sorry. Please type X or O");
-        window.location.reload(true);
-    break;
-    default:
-        alert("Sorry. Please type X or O");
-        window.location.reload(true);
-        break;
+        default:
+            alert("Sorry. Please type X or O");
+            window.location.reload(true);
+            break;
+    }
 }
 
 /*function computersTurn() {
@@ -637,7 +641,22 @@ function reset(){
   hard = false;
 }
 //if reset button is clicked on html run reset function
-$("#reset").click(function(){
+$("#easyMode").click(function(){
   reset();
     });
-});
+function hideButtons(){
+    document.getElementById("easyMode").disabled = true;
+    document.getElementById("easyMode").style.visibility = "hidden";
+    document.getElementById("hardMode").disabled = true;
+    document.getElementById("hardMode").style.visibility = "hidden";
+}
+$("#playGame").click(function(){
+    document.getElementById("playGame").disabled = true;
+    document.getElementById("playGame").style.visibility = "hidden";
+    document.getElementById("easyMode").disabled = false;
+    document.getElementById("easyMode").style.visibility = "visible";
+    document.getElementById("hardMode").disabled = false;
+    document.getElementById("hardMode").style.visibility = "visible";
+    startGame();
+    });
+//});
