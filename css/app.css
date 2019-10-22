@@ -32,11 +32,6 @@ body {
 h1 {
 	font-family: 'Comic Sans MS', cursive;
 }
-footer {
-	display: block;
-	padding: 0px 0;
-	font-size: 12px;
-}
 
 /*
  * Styles for the deck of cards
