@@ -15,12 +15,6 @@ body {
 	margin: 0;
 	padding: 0;
 }
-header {
-	display: block;
-	position: relative;
-	z-index: 999;
-	margin-bottom: 46px;
-}
 
 body {
 	background: #ffffff;
