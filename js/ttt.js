@@ -708,7 +708,7 @@ $("#easyMode").click(function(){
   reset();
     });
 function hideButtons(){
-    document.getElementById("gameBoard").disabled = true;
+    //document.getElementById("gameBoard").disabled = true;
     document.getElementById("easyMode").disabled = true;
     document.getElementById("easyMode").style.visibility = "hidden";
     document.getElementById("hardMode").disabled = true;
