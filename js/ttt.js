@@ -5,6 +5,7 @@ var turn = "";
 var gameOn = false;
 var count = 0;
 var hard = false;
+var playing = false;
 const checkbox = $("#musicCheck");
 
 document.body.onload = hideButtons();
@@ -646,7 +647,13 @@ $(".tic").click(function(){
   //}
   //else if(!hard){
     //sent they array of turns and the users choice to the playerTurn function
-    playerTurn(turn,slot);
+    if(playing){
+        playerTurn(turn,slot);
+    }
+    else if(!playing){
+        alert("please click PLAY");
+    }
+    
   //}
    
 });
@@ -702,6 +709,7 @@ function reset(){
   //switch the game on to be true
   gameOn = true;
   hard = false;
+  //playing = false;
 }
 //if reset button is clicked on html run reset function
 $("#easyMode").click(function(){
@@ -726,6 +734,7 @@ checkbox.change(function(event) {
     }
 });
 $("#playGame").click(function(){
+    playing = true;
     document.getElementById("playGame").disabled = true;
     document.getElementById("playGame").style.visibility = "hidden";
     document.getElementById("easyMode").disabled = false;
