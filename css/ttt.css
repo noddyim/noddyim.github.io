@@ -1,3 +1,9 @@
+header {
+	display: block;
+	position: relative;
+	z-index: 999;
+	margin-bottom: 46px;
+}
 body{
   background: #212121;
   color: #666;
@@ -5,6 +11,35 @@ body{
 h1{
   text-align: center;
   color: #fff;
+}
+ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+ul.list {
+	padding-top: 30px;
+}
+
+ul.list li {
+	padding-left: 23px;
+	position: relative;
+}
+
+ul.list li:after {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 7px;
+	width: 3px;
+	height: 3px;
+	background-color: #fcab1c;
+	content: '';
+}
+
+ul.list li+li {
+	margin-top: 18px;
 }
 .clearfix{
   clear: both;
