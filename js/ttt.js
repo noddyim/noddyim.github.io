@@ -625,6 +625,7 @@ function winCondition(trackMoves, currentMove) {
         //if all the spots were taken its a draw
     } else if(!(trackMoves.includes("#"))){
        gameOn = true;
+       catSound();
       if(hard){
             resetHard();
         }
@@ -670,15 +671,10 @@ function loserSound(){
     var x = document.getElementById("loser");
     x.play();
 }
-/*function music(){
-    var x = document.getElementById("music");
-    var y = document.getElementById("musicCheck");
-    if(y.checked){
-        x.play();
-    } else if(y.checked===false){
-        x.src = "";
-    }
-}*/
+function catSound(){
+    var x = document.getElementById("cat");
+    x.play();
+}
 function resetHard(){
     //assign all the elements in the array to be #
   turns = ["#","#","#","#","#","#","#","#","#"];
