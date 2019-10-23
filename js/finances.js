@@ -18,6 +18,8 @@ var cell2;
 
 function calculate(){
 
+	coinSound();
+
 	total = 0;
 
 	table = document.getElementById("spendingTable");
@@ -50,6 +52,11 @@ function calculate(){
 	document.getElementById("leftover").innerHTML = "$"+leftover;
 	document.getElementById("leftoverS").innerHTML = "$"+leftoverS;
 	document.getElementById("saved").innerHTML = amtKept;
+}
+
+function coinSound(){
+    var x = document.getElementById("coin");
+    x.play();
 }
 
 function addRow(){
