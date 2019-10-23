@@ -33,6 +33,12 @@ function calculate(){
 		number = parseInt(amount[i]);
 		total += number;
 	}
+	if(incomeSpouse == 0 && income == 0 && incomeOther == 0){
+		alert("Please enter income.");
+	}
+	if(total == 0){
+		alert("Please enter $ value of monthly bills.");
+	}
 
 	income = (document.getElementById("income").value)*2;
 	incomeSpouse = (document.getElementById("incomeS").value)*2;
@@ -45,16 +51,18 @@ function calculate(){
 	income += incomeOther;
 
 	leftover = leftover - ((income-total)/2);
-	if(incomeSpouse !== 0){
+	if(incomeSpouse > 0){
 		leftoverS = leftoverS - ((income-total)/2);
+		document.getElementById("leftoverS").innerHTML = "$"+leftoverS;
 	}
 	
 	amtKept = (income - total)/2;
 
-	document.getElementById("total").innerHTML = total;
-	document.getElementById("leftover").innerHTML = "$"+leftover;
-	document.getElementById("leftoverS").innerHTML = "$"+leftoverS;
-	document.getElementById("saved").innerHTML = amtKept;
+	if(income > 0 && total > 0){
+		document.getElementById("total").innerHTML = total;
+		document.getElementById("leftover").innerHTML = "$"+leftover;
+		document.getElementById("saved").innerHTML = amtKept;
+	}
 }
 
 function coinSound(){
