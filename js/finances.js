@@ -8,7 +8,7 @@ var incomeOther = 0;
 var leftover = 0;
 var leftoverS = 0;
 var total;
-var amtKept = 0;
+var totalIncome = 0;
 var table;
 var row;
 var cell1;
@@ -48,18 +48,17 @@ function calculate(){
 	leftover = income;
 	leftoverS = incomeSpouse;
 
-	income += incomeSpouse;
-	income += incomeOther;
+	totalIncome = income + incomeSpouse + incomeOther;
 	
 	if(incomeSpouse > 0){
-		leftoverS = leftoverS - ((income-total)/2);
+		leftoverS = (totalIncome-total)/2;
 		document.getElementById("leftoverS").innerHTML = "$"+leftoverS;
 	}
 	
 	//amtKept = (income - total)/2;
 	
 	if(income > 0 && total > 0){
-		leftover = leftover - ((income-total)/2);
+		leftover = (totalIncome-total)/2;
 		document.getElementById("total").innerHTML = "$"+total;
 		document.getElementById("leftover").innerHTML = "$"+leftover;
 		//document.getElementById("saved").innerHTML = amtKept;
