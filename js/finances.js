@@ -5,6 +5,8 @@ var number = 0;
 var income = 0;
 var incomeSpouse = 0;
 var incomeOther = 0;
+var leftover = 0;
+var leftoverS = 0;
 var total;
 var amtKept = 0;
 var table;
@@ -18,8 +20,6 @@ function calculate(){
 
 	total = 0;
 
-	//alert("amount:"+amount);
-
 	table = document.getElementById("spendingTable");
 
 	for(var i = 1; i < table.rows.length-3; i++){
@@ -30,21 +30,25 @@ function calculate(){
 		}
 		number = parseInt(amount[i]);
 		total += number;
-		//alert("table rows1 cells i value:"+document.getElementById(cell2.id).value);//table.rows[1].cells[i].value);
-		//alert("amount:"+amount[i]);
 	}
-	//alert("after forloop amt:"+amount);
 
 	income = (document.getElementById("income").value)*2;
 	incomeSpouse = (document.getElementById("incomeS").value)*2;
 	incomeOther = (document.getElementById("incomeO").value)*2;
 
+	leftover = income;
+	leftoverS = incomeSpouse;
+
 	income += incomeSpouse;
 	income += incomeOther;
 
+	leftover = leftover - ((income-total)/2);
+	leftoverS = leftoverS - ((income-total)/2);
 	amtKept = (income - total)/2;
 
 	document.getElementById("total").innerHTML = total;
+	document.getElementById("leftover").innerHTML = "$"+leftover;
+	document.getElementById("leftoverS").innerHTML = "$"+leftoverS;
 	document.getElementById("saved").innerHTML = amtKept;
 }
 
