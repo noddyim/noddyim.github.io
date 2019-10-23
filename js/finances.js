@@ -3,6 +3,8 @@ var amt = "amt";
 var elementID;
 var number = 0;
 var income = 0;
+var incomeSpouse = 0;
+var incomeOther = 0;
 var total;
 var amtKept = 0;
 var table;
@@ -34,6 +36,11 @@ function calculate(){
 	//alert("after forloop amt:"+amount);
 
 	income = (document.getElementById("income").value)*2;
+	incomeSpouse = (document.getElementById("incomeS").value)*2;
+	incomeOther = (document.getElementById("incomeO").value)*2;
+
+	income += incomeSpouse;
+	income += incomeOther;
 
 	amtKept = (income - total)/2;
 
