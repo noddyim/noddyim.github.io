@@ -54,14 +54,11 @@ function calculate(){
 		leftoverS = (totalIncome-total)/2;
 		document.getElementById("leftoverS").innerHTML = "$"+leftoverS;
 	}
-	
-	//amtKept = (income - total)/2;
-	
+		
 	if(income > 0 && total > 0){
 		leftover = (totalIncome-total)/2;
 		document.getElementById("total").innerHTML = "$"+total;
 		document.getElementById("leftover").innerHTML = "$"+leftover;
-		//document.getElementById("saved").innerHTML = amtKept;
 	}
 }
 
