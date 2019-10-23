@@ -33,16 +33,17 @@ function calculate(){
 		number = parseInt(amount[i]);
 		total += number;
 	}
+
+	income = (document.getElementById("income").value)*2;
+	incomeSpouse = (document.getElementById("incomeS").value)*2;
+	incomeOther = (document.getElementById("incomeO").value)*2;
+
 	if(incomeSpouse == 0 && income == 0 && incomeOther == 0){
 		alert("Please enter income.");
 	}
 	if(total == 0){
 		alert("Please enter $ value of monthly bills.");
 	}
-
-	income = (document.getElementById("income").value)*2;
-	incomeSpouse = (document.getElementById("incomeS").value)*2;
-	incomeOther = (document.getElementById("incomeO").value)*2;
 
 	leftover = income;
 	leftoverS = incomeSpouse;
