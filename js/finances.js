@@ -45,7 +45,10 @@ function calculate(){
 	income += incomeOther;
 
 	leftover = leftover - ((income-total)/2);
-	leftoverS = leftoverS - ((income-total)/2);
+	if(incomeSpouse !== 0){
+		leftoverS = leftoverS - ((income-total)/2);
+	}
+	
 	amtKept = (income - total)/2;
 
 	document.getElementById("total").innerHTML = total;
