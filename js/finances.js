@@ -50,19 +50,19 @@ function calculate(){
 
 	income += incomeSpouse;
 	income += incomeOther;
-
-	leftover = leftover - ((income-total)/2);
+	
 	if(incomeSpouse > 0){
 		leftoverS = leftoverS - ((income-total)/2);
 		document.getElementById("leftoverS").innerHTML = "$"+leftoverS;
 	}
 	
-	amtKept = (income - total)/2;
-
+	//amtKept = (income - total)/2;
+	
 	if(income > 0 && total > 0){
-		document.getElementById("total").innerHTML = total;
+		leftover = leftover - ((income-total)/2);
+		document.getElementById("total").innerHTML = "$"+total;
 		document.getElementById("leftover").innerHTML = "$"+leftover;
-		document.getElementById("saved").innerHTML = amtKept;
+		//document.getElementById("saved").innerHTML = amtKept;
 	}
 }
 
