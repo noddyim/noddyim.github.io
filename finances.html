@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Noddy's Page | Budget Calculator</title>
+<meta charset="utf-8">
+<!--<link rel="icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="images/favicon.ico">-->
+<link rel="stylesheet" href="css/style.css">
+<script src="js/finances.js"></script>
+</head>
+<body>
+<header>
+  <div class="container_12">
+    <div class="grid_12">
+      <div class="menu_block">
+        <nav>
+          <ul class="sf-menu">
+            <li class="current"><a href="index.html">Home</a></li>
+            <li><a href="TTT.html">Tic Tac Toe</a></li>
+            <li><a href="match.html">Matching Game</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </nav>
+        <!--search bar
+          <form id="search" action="#" method="GET">
+          <input type="text" name="s">
+          <a onClick="document.getElementById('search').submit()"></a>
+          <div class="clear"></div>
+        </form>-->
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+</header>
+<br><h2 style="text-align: center; font-size: 30px">Finances</h2><br>
+
+<table id="spendingTable" style="border:1px solid black;margin-left:auto;margin-right:auto;">
+	<tr>
+		<th>Name of the Bill</th>
+		<th>Amount</th>		
+	</tr>
+	<tr>
+		<td><input type="text" id="name1" size="35"></td>
+		<td><span>$</span><input type="text" id="amt1" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name2" size="35"></td>
+		<td><span>$</span><input type="text" id="amt2" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name3" size="35"></td>
+		<td><span>$</span><input type="text" id="amt3" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name4" size="35"></td>
+		<td><span>$</span><input type="text" id="amt4" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name4" size="35"></td>
+		<td><span>$</span><input type="text" id="amt5" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name4" size="35"></td>
+		<td><span>$</span><input type="text" id="amt6" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name4" size="35"></td>
+		<td><span>$</span><input type="text" id="amt7" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name4" size="35"></td>
+		<td><span>$</span><input type="text" id="amt8" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name4" size="35"></td>
+		<td><span>$</span><input type="text" id="amt9" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name4" size="35"></td>
+		<td><span>$</span><input type="text" id="amt10" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name4" size="35"></td>
+		<td><span>$</span><input type="text" id="amt11" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name4" size="35"></td>
+		<td><span>$</span><input type="text" id="amt12" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name4" size="35"></td>
+		<td><span>$</span><input type="text" id="amt13" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name4" size="35"></td>
+		<td><span>$</span><input type="text" id="amt14" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name4" size="35"></td>
+		<td><span>$</span><input type="text" id="amt15" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name4" size="35"></td>
+		<td><span>$</span><input type="text" id="amt16" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name4" size="35"></td>
+		<td><span>$</span><input type="text" id="amt17" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name4" size="35"></td>
+		<td><span>$</span><input type="text" id="amt18" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name4" size="35"></td>
+		<td><span>$</span><input type="text" id="amt19" size="10"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="name4" size="35"></td>
+		<td><span>$</span><input type="text" id="amt20" size="10"></td>
+	</tr>
+	<tr>
+		<td style="font-size: 15px;text-align: right">Spending Total: </td>
+		<td><span>$</span><p id="total"></p></td>
+	</tr>
+	<tr>
+		<td style="font-size: 15px;text-align: right">Amount saved each check: </td>
+		<td><span>$</span><p id="saved"></p></td>
+	</tr>
+	<!--<tr>
+		<td><input id="add" type="button" value="Add a row" onclick="addRow();" /></td>
+		<td><input id="delete" type="button" value="Delete a row" onclick="delRow();" /></td>
+	</tr>-->
+	<p style="font-size: 20px; text-align: center">
+		Income per paycheck: $<input type="text" id="income" size="10">
+		<input id="calculate" type="button" value="Calculate table" onclick="calculate();" />
+	</p>
+</table>
+<br><br>  
+<footer>
+  <div class="container_12">
+    <div class="grid_12">
+      <div class="copy">Noddy's Page &copy; 2019</div>
+    </div>
+  </div>
+</footer>
+</body>
+
+</html>
