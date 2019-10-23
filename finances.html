@@ -122,21 +122,27 @@
 	</tr>
 	<tr>
 		<td style="font-size:15px; text-align:right; color:black" bgcolor="white">Spending Total: </td>
-		<td bgcolor="white" style="color:black"><span>$</span><p id="total"></p></td>
+		<td bgcolor="white" style="font-size:15px; text-align:right; color:black"><span>$</span><p id="total"></p></td>
 	</tr>
-	<tr>
+	<!--<tr>
 		<td style="font-size:15px; text-align:right; color:black" bgcolor="white">Amount saved each check: </td>
-		<td bgcolor="white" style="color:black"><span>$</span><p id="saved"></p></td>
-	</tr>
+		<td bgcolor="white" style="font-size:15px; text-align:right; color:black"><span>$</span><p id="saved"></p></td>
+	</tr>-->
 	<!--<tr>
 		<td><input id="add" type="button" value="Add a row" onclick="addRow();" /></td>
 		<td><input id="delete" type="button" value="Delete a row" onclick="delRow();" /></td>
 	</tr>-->
 	<p style="font-size: 20px; text-align: center">
 		Income per paycheck: $<input type="text" id="income" size="10"><br>
+		Income left over per paycheck:<p style="font-size: 20px; text-align: center" id="leftover"></p>
+	</p>
+	<p style="font-size: 20px; text-align: center">
 		Spouse income per paycheck: $<input type="text" id="incomeS" size="10"><br>
+		Income left over per paycheck:<p style="font-size: 20px; text-align: center" id="leftoverS"></p>
+	</p>
+	<p style="font-size: 20px; text-align: center">	
 		Other income (twice a month): $<input type="text" id="incomeO" size="10"><br>
-		<input id="calculate" type="button" value="Calculate table" onclick="calculate();" />
+		<input id="calculate" type="button" value="Calculate table" onclick="calculate();"/>
 	</p>
 </table>
 <br><br>  
