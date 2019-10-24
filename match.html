@@ -8,11 +8,41 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="css/app.css">
 </head>
-<header style="text-align: center">
-   <button onclick="window.location.href = 'index.html';"><i class="fa fa-home" style="font-size:35px;color:red;"></i> Home</button>
-   <button onclick="window.location.href = 'TTT.html';"><img src="images/ttt.ico" alt="TicTacToe" width="30" height="30"></i> Tic Tac Toe</button>
-   <button onclick="window.location.href = 'finances.html';"><i class="fa fa-money" style="font-size:35px;color:red;"></i> Budget Calculator</button>
-   <button onclick="window.location.href = 'contact.html';"><i class="fa fa-envelope" style="font-size:35px;color:red;"></i> Contact Us</button>
+<header style="display: block;
+	position: relative;
+	z-index: 999;
+  margin-bottom: 46px;">
+  <div style="margin-left: auto;
+  margin-right: auto;
+  width: 960px;">
+  <div style="display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;">
+  <div style="position: relative;
+	background: #fe8c21;
+	z-index: 999;
+	padding-left: 20px;
+	padding-right: 35px;">
+   <button onclick="window.location.href = 'index.html';" style="background-color: #fe8c21"><i class="fa fa-home" style="font-size:35px;color:black; background-color: #fe8c21"></i> Home</button>
+   <button onclick="window.location.href = 'TTT.html';" style="background-color: #fe8c21"><img src="images/ttt.ico" alt="TicTacToe" width="30" height="30"> Matching Game</button>
+   <button onclick="window.location.href = 'finances.html';" style="background-color: #fe8c21"><img src="images/budget.png" alt="Budget" width="30" height="30"> Budget Calculator</button>
+   <button onclick="window.location.href = 'contact.html';" style="background-color: #fe8c21"><i class="fa fa-envelope" style="font-size:35px;color:black;"></i> Contact Us</button>
+   <div style="clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;"></div>
+   </div>
+   <div style="clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;"></div>
+   </div>
+   </div>
 </header>
 <body>
 
