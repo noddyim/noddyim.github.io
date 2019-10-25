@@ -24,7 +24,7 @@ addEventListener('resize', () => {
 document.body.onload = start();
 
 function start(){
-	makeObstacles();
+	//makeObstacles();
 	interval = setInterval(updateGameArea, 20);
 }
 
