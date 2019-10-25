@@ -336,6 +336,7 @@ h1 {
 	}
 }
 nav>.sf-menu {
+  list-style: none;
 
 }
 nav{ position:relative;padding: 0px 0 0 0;}

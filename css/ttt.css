@@ -93,6 +93,7 @@ footer{
   padding-top: 20px;
 }
 nav>.sf-menu {
+  list-style: none;
 
 }
 nav{ position:relative;padding: 0px 0 0 0;}
