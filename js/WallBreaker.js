@@ -10,12 +10,12 @@ var x = 50;
 var y = 300;
 var speedX = 1;
 var speedY = 1;
-
+/*
 var xWall = new Array(55);
 var yWall = new Array(55);
 
 var board;
-
+*/
 addEventListener('resize', () => {
   canvas.width = 600;
   canvas.height = 400;
@@ -36,15 +36,13 @@ function updateBall(){
 function clear(){
 	c.clearRect(0, 0, canvas.width, canvas.height);
 }
-
+/*
 function stop(){
 	clearInterval(interval);
 }
-
+*/
 function updateGameArea() {
-	/*if(crashCheck()){
-		stop();
-	}*/
+
 	clear();
 	x = x + speedX;
 	y = y + speedY;
@@ -54,7 +52,7 @@ function updateGameArea() {
 	if(y > 390 || y < 1){
 		speedY = speedY * -1;
 	}
-	//updateRow1();
+	updateRow1();
 	updateRow2();
 	updateRow3();
 	updateRow4();
@@ -62,7 +60,7 @@ function updateGameArea() {
   	updateBall();
 }
 
-function crashCheck(){
+/*function crashCheck(){
 
 	var crash = true;
 
@@ -127,13 +125,13 @@ function makeObstacles(){
 	//alert("xwall:"+xWall);
 	//alert("ywall:"+yWall);
 }
-
+*/
 function updateRow1(){
 	c.fillStyle = "gold";
 	/*for(var i = 0; i < 12; i++)
 	{
 		c.fillRect(xWall[i], yWall[i], 40, 20);
-	}
+	}*/
 	c.fillRect(50, 50, 40, 20);
 	c.fillRect(95, 50, 40, 20);
 	c.fillRect(140, 50, 40, 20);
@@ -144,7 +142,7 @@ function updateRow1(){
 	c.fillRect(365, 50, 40, 20);
 	c.fillRect(410, 50, 40, 20);
 	c.fillRect(455, 50, 40, 20);
-	c.fillRect(500, 50, 40, 20);*/
+	c.fillRect(500, 50, 40, 20);
 }
 function updateRow2(){	
 	c.fillStyle = "red";
