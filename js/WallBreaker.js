@@ -17,8 +17,8 @@ var yWall = new Array(55);
 var board;
 */
 addEventListener('resize', () => {
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
+  canvas.width = 600;
+  canvas.height = 400;
 });
 
 document.body.onload = start();
@@ -46,7 +46,7 @@ function updateGameArea() {
 	clear();
 	x = x + speedX;
 	y = y + speedY;
-	if(x > 395 || x < 1){
+	if(x > 595 || x < 1){
 		speedX = speedX * -1;
 	}
 	if(y > 395 || y < 1){
