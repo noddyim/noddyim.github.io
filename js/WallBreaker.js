@@ -56,9 +56,9 @@ function updateGameArea() {
 	}
 	//updateRow1();
 	//updateRow2();
-	updateRow3();
-	updateRow4();
-	updateRow5();
+	//updateRow3();
+	//updateRow4();
+	//updateRow5();
   	updateBall();
 }
 
