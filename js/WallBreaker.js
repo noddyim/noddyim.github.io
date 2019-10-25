@@ -54,7 +54,7 @@ function updateGameArea() {
 	if(y > 390 || y < 1){
 		speedY = speedY * -1;
 	}
-	updateRow1();
+	//updateRow1();
 	updateRow2();
 	updateRow3();
 	updateRow4();
