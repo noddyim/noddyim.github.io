@@ -7,7 +7,7 @@ const c = canvas.getContext('2d');
 
 var interval;
 var x = 50;
-var y = 300;
+var y = 100;
 var speedX = 1;
 var speedY = 1;
 /*
