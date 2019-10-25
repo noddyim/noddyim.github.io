@@ -55,10 +55,10 @@ function updateGameArea() {
 		speedY = speedY * -1;
 	}
 	//updateRow1();
-	//updateRow2();
-	//updateRow3();
-	//updateRow4();
-	//updateRow5();
+	updateRow2();
+	updateRow3();
+	updateRow4();
+	updateRow5();
   	updateBall();
 }
 
@@ -130,11 +130,11 @@ function makeObstacles(){
 
 function updateRow1(){
 	c.fillStyle = "gold";
-	for(var i = 0; i < 12; i++)
+	/*for(var i = 0; i < 12; i++)
 	{
 		c.fillRect(xWall[i], yWall[i], 40, 20);
 	}
-	/*c.fillRect(50, 50, 40, 20);
+	c.fillRect(50, 50, 40, 20);
 	c.fillRect(95, 50, 40, 20);
 	c.fillRect(140, 50, 40, 20);
 	c.fillRect(185, 50, 40, 20);
