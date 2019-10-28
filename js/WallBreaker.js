@@ -6,31 +6,97 @@ const c = canvas.getContext('2d');
 //var w = canvas.getContext("2d");
 
 var interval;
-var x = 50;
-var y = 100;
-var speedX = 1;
-var speedY = 1;
-/*
+var x;// = 50;
+var y;// = 180;
+var w;
+var h;
+var colour;
+var speedX = 2;
+var speedY = 2;
+
 var xWall = new Array(55);
 var yWall = new Array(55);
+var brick = new Array(55);
+var brickX;
+var brickY;
+var impact = new Array(55);
 
+/*
 var board;
 */
-addEventListener('resize', () => {
+/*addEventListener('resize', () => {
   canvas.width = 600;
   canvas.height = 400;
-});
+});*/
+
+var ball; 
 
 document.body.onload = start();
 
 function start(){
-	//makeObstacles();
+	canvas.width = 600;
+  canvas.height = 400;
+	makeObstacles();
+	ball = new object("black", 50, 180, 5, 5);
+	
+	for(var i = 0; i < 55; i++){
+		impact[i]=false;
+		if(i>-1 && i<11){
+			brick[i] = new wall("gold", xWall[i], yWall[i], 40, 20, impact[i]);
+		}
+		if(i>10 && i<22){
+			brick[i] = new wall("red", xWall[i], yWall[i], 40, 20, impact[i]);
+		}
+		if(i>21 && i<33){
+			brick[i] = new wall("green", xWall[i], yWall[i], 40, 20, impact[i]);
+		}
+		if(i>32 && i<44){
+			brick[i] = new wall("blue", xWall[i], yWall[i], 40, 20, impact[i]);
+		}
+		if(i>43 && i<55){
+			brick[i] = new wall("cyan", xWall[i], yWall[i], 40, 20, impact[i]);
+		}
+	}
+	alert("brick:"+brick+" xwall:"+xWall+" ywall:"+yWall+" impact:"+impact);
 	interval = setInterval(updateGameArea, 20);
 }
 
 function updateBall(){	
 		c.fillStyle = "black";
 		c.fillRect(x, y, 5, 5);
+}
+
+function wall(colorW, xBrick, yBrick, wBrick, hBrick, impact){
+	
+	this.crash = function(){
+		if(xBrick <= x && x <= (xBrick+40) && yBrick <= y && y <= (yBrick+20)){
+			c.fillStyle = colorW;
+			c.fillRect(-50, -50, 40, 20);
+			impact = true;
+			if(xBrick <= x && x <= (xBrick+40)){
+				speedX = speedX * -1;
+			}
+			if(yBrick <= y && y <= (yBrick+20)){
+				speedY = speedY * -1;
+			}
+
+
+		}else if(!impact){
+			c.fillStyle = colorW;
+			c.fillRect(xBrick, yBrick, wBrick, hBrick);
+		}
+	}
+}
+
+function object(colorOf, xValue, yValue, wValue, hValue){
+	w = wValue;
+	h = hValue;
+	x = xValue;
+	y = yValue;
+	this.update = function(){
+		c.fillStyle = colorOf;
+		c.fillRect(x, y, w, h);
+	}
 }
 
 function clear(){
@@ -52,12 +118,16 @@ function updateGameArea() {
 	if(y > 395 || y < 1){
 		speedY = speedY * -1;
 	}
-	updateRow1();
+	ball.update();
+	for(var i = 0; i < 55; i++){
+		brick[i].crash();
+	}
+	/*updateRow1();
 	updateRow2();
 	updateRow3();
 	updateRow4();
-	updateRow5();
-  	updateBall();
+	updateRow5();*/
+  //updateBall();
 }
 
 /*function crashCheck(){
@@ -82,7 +152,7 @@ function updateGameArea() {
       crash = false;
     }
     return crash;
-}
+}*/
 
 function makeObstacles(){
 	var tempX = 50;
@@ -102,21 +172,21 @@ function makeObstacles(){
 			if(i == 21){
 				tempX = 50;
 			}
-		}else if(i > 22 && i <=32){
+		}else if(i > 21 && i <=32){
 			xWall[i] = tempX;
 			yWall[i] = 100;
 			tempX += 45;
 			if(i == 32){
 				tempX = 50;
 			}
-		}else if(i > 33 && i <=43){
+		}else if(i > 32 && i <=43){
 			xWall[i] = tempX;
 			yWall[i] = 125;
-			tempX += 43;
+			tempX += 45;
 			if(i == 43){
 				tempX = 50;
 			}
-		}else if(i > 44 && i <=54){
+		}else if(i > 43 && i <=55){
 			xWall[i] = tempX;
 			yWall[i] = 150;
 			tempX += 45;
@@ -125,27 +195,127 @@ function makeObstacles(){
 	//alert("xwall:"+xWall);
 	//alert("ywall:"+yWall);
 }
-*/
+
 function updateRow1(){
 	c.fillStyle = "gold";
 	/*for(var i = 0; i < 12; i++)
 	{
 		c.fillRect(xWall[i], yWall[i], 40, 20);
 	}*/
-	c.fillRect(50, 50, 40, 20);
-	c.fillRect(95, 50, 40, 20);
-	c.fillRect(140, 50, 40, 20);
-	c.fillRect(185, 50, 40, 20);
-	c.fillRect(230, 50, 40, 20);
-	c.fillRect(275, 50, 40, 20);
-	c.fillRect(320, 50, 40, 20);
-	c.fillRect(365, 50, 40, 20);
-	c.fillRect(410, 50, 40, 20);
-	c.fillRect(455, 50, 40, 20);
-	c.fillRect(500, 50, 40, 20);
+	if(50 <= x && x <= 90 && 50 <= y && y <=70){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(50, 50, 40, 20);
+	}
+	
+	if(95 <= x <= 135 && 50 <= y <=70){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(95, 50, 40, 20);
+	}
+	if(140 <= x <= 180 && 50 <= y <=70){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(140, 50, 40, 20);
+	}
+	if(185 <= x <= 225 && 50 <= y <=70){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(185, 50, 40, 20);
+	}
+	if(230 <= x <= 270 && 50 <= y <=70){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(230, 50, 40, 20);
+	}
+	if(275 <= x <= 315 && 50 <= y <=70){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(275, 50, 40, 20);
+	}	 
+	if(320 <= x <= 360 && 50 <= y <=70){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(320, 50, 40, 20);
+	}
+	if(365 <= x <= 405 && 50 <= y <=70){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(365, 50, 40, 20);
+	}
+	if(410 <= x <= 450 && 50 <= y <=70){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(410, 50, 40, 20);
+	}
+	if(455 <= x <= 500 && 50 <= y <=70){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(455, 50, 40, 20);
+	}
+	if(500 <= x <= 540 && 50 <= y <=70){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(500, 50, 40, 20);
+	}
 }
 function updateRow2(){	
 	c.fillStyle = "red";
+	if(50 <= x <= 90 && 75 <= y <=95){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(50, 75, 40, 20);
+	}	
+	if(95 <= x <= 135 && 75 <= y <=95){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(95, 75, 40, 20);
+	}
+	if(140 <= x <= 180 && 75 <= y <=95){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(140, 75, 40, 20);
+	}
+	if(185 <= x <= 225 && 75 <= y <=95){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(185, 75, 40, 20);
+	}
+	if(230 <= x <= 270 && 75 <= y <=95){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(230, 75, 40, 20);
+	}
+	if(275 <= x <= 315 && 75 <= y <=95){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(275, 75, 40, 20);
+	}	 
+	if(320 <= x <= 360 && 75 <= y <=95){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(320, 75, 40, 20);
+	}
+	if(365 <= x <= 405 && 75 <= y <=95){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(365, 75, 40, 20);
+	}
+	if(410 <= x <= 450 && 75 <= y <=95){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(410, 75, 40, 20);
+	}
+	if(455 <= x <= 500 && 75 <= y <=95){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(455, 75, 40, 20);
+	}
+	if(500 <= x <= 540 && 75 <= y <=95){
+		c.fillRect(-50, -50, 40, 20);
+	}else{
+		c.fillRect(500, 75, 40, 20);
+	}
 	c.fillRect(50, 75, 40, 20);
 	c.fillRect(95, 75, 40, 20);
 	c.fillRect(140, 75, 40, 20);
