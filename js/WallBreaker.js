@@ -57,7 +57,7 @@ function start(){
 			brick[i] = new wall("cyan", xWall[i], yWall[i], 40, 20, impact[i]);
 		}
 	}
-	alert("brick:"+brick+" xwall:"+xWall+" ywall:"+yWall+" impact:"+impact);
+	//alert("brick:"+brick+" xwall:"+xWall+" ywall:"+yWall+" impact:"+impact);
 	interval = setInterval(updateGameArea, 20);
 }
 
