@@ -11,8 +11,8 @@ var y;// = 180;
 var w;
 var h;
 var colour;
-var speedX = 2;
-var speedY = 2;
+var speedX = 1;
+var speedY = 1;
 
 var xWall = new Array(55);
 var yWall = new Array(55);
@@ -37,24 +37,24 @@ function start(){
 	canvas.width = 600;
   canvas.height = 400;
 	makeObstacles();
-	ball = new object("black", 50, 180, 5, 5);
+	ball = new object("black", 10, 190, 5, 5);
 	
 	for(var i = 0; i < 55; i++){
 		impact[i]=false;
 		if(i>-1 && i<11){
-			brick[i] = new wall("gold", xWall[i], yWall[i], 40, 20, impact[i]);
+			brick[i] = new wall("gold", xWall[i], yWall[i], 40, 20, i);
 		}
 		if(i>10 && i<22){
-			brick[i] = new wall("red", xWall[i], yWall[i], 40, 20, impact[i]);
+			brick[i] = new wall("red", xWall[i], yWall[i], 40, 20, i);
 		}
 		if(i>21 && i<33){
-			brick[i] = new wall("green", xWall[i], yWall[i], 40, 20, impact[i]);
+			brick[i] = new wall("green", xWall[i], yWall[i], 40, 20, i);
 		}
 		if(i>32 && i<44){
-			brick[i] = new wall("blue", xWall[i], yWall[i], 40, 20, impact[i]);
+			brick[i] = new wall("blue", xWall[i], yWall[i], 40, 20, i);
 		}
 		if(i>43 && i<55){
-			brick[i] = new wall("cyan", xWall[i], yWall[i], 40, 20, impact[i]);
+			brick[i] = new wall("cyan", xWall[i], yWall[i], 40, 20, i);
 		}
 	}
 	//alert("brick:"+brick+" xwall:"+xWall+" ywall:"+yWall+" impact:"+impact);
@@ -66,22 +66,92 @@ function updateBall(){
 		c.fillRect(x, y, 5, 5);
 }
 
-function wall(colorW, xBrick, yBrick, wBrick, hBrick, impact){
-	
+function wall(colorW, xBrick, yBrick, wBrick, hBrick, index){
 	this.crash = function(){
-		if(xBrick <= x && x <= (xBrick+40) && yBrick <= y && y <= (yBrick+20)){
+		/*
+		//alert("spd x:"+speedX+" spd y:"+speedY);
+		if(!impact[index]){
+				c.fillStyle = colorW;
+				c.fillRect(xBrick, yBrick, wBrick, hBrick);
+			}//moving bottom right
+		if(speedX>1 && speedY>1){
+			//alert("moving bottom right");
+				if(x <= (xWall[index]+20) && (x+5) >=xWall[index] && (y+5) >= yWall[index] && y <= (yWall[index]+20)){
+					c.fillStyle = colorW;
+					c.fillRect(-50, -50, 40, 20);
+					imp = true;
+					xWall[index] = -50;
+					yWall[index] = -50;
+					speedY = speedY * -1;
+				}
+				
+			}//moving upper right
+			else if(speedX<1 && speedY>1){
+				//alert("moving upper right");
+				if(x <= (xWall[index]+20) && (x+5) >=xWall[index] && (y+5) >= yWall[index] && y <= (yWall[index]+20)){
+					c.fillStyle = colorW;
+					c.fillRect(-50, -50, 40, 20);
+					imp = true;
+					xWall[index] = -50;
+					yWall[index] = -50;
+					speedY = speedY * -1;
+				}
+			}//moving bottom left
+			else if(speedX>1 && speedY<1){
+				//alert("moving bottom left");				
+				if((x+5) <= xWall[index]+20 && (y+5) >= yWall[index]){
+					c.fillStyle = colorW;
+					c.fillRect(-50, -50, 40, 20);
+					imp = true;
+					xWall[index] = -50;
+					yWall[index] = -50;
+					speedY = speedY * -1;
+				}
+			}
+			//moving upper left
+			else if(speedX<1 && speedY<1){
+				//alert("moving upper left");
+			}
+		*/
+		//if(x <= (xWall[index]+20) && (x+6) >=xWall[index] && (y+6) >= yWall[index] && y <= (yWall[index]+20)){
+		/*
+		if(x <= (xBrick+20) && (x+5) >=xBrick && (y+5) >= yBrick && y <= (yBrick+40)){
+			alert("ballx:"+x+" bally:"+y+" wallx:"+xBrick+" wally:"+yBrick+" index:"+index);
 			c.fillStyle = colorW;
 			c.fillRect(-50, -50, 40, 20);
-			impact = true;
-			if(xBrick <= x && x <= (xBrick+40)){
+			impact[index] = true;
+			xWall[index] = -50;
+			yWall[index] = -50;
+			if((x+5) >= xBrick && x <= (xBrick+20)){
+				speedX = speedX * -1;
+				xBrick = xWall[index];
+			}
+			if((y+5) >= yBrick && y <= (yBrick+40)){
+				speedY = speedY * -1;
+				yBrick = yWall[index];
+			}
+			//alert("xbr:"+xBrick+" ybr:"+yBrick+" xwal:"+xWall[index]+" ywal:"+yWall[index]);
+		}else if(!impact[index]){
+			c.fillStyle = colorW;
+			c.fillRect(xBrick, yBrick, wBrick, hBrick);
+		}*/
+		
+		if(x <= (xBrick+40) && (x+5) >=xBrick && (y+5) >= yBrick && y <= (yBrick+20)){
+			//alert("bx5:"+(x+5)+" bx:"+x+" by5:"+(y+5)+" by:"+y+" wx20:"+(xBrick+20)+" wx:"+xBrick+" wy40:"+(yBrick+40)+" wy:"+yBrick+" index:"+index);
+			c.fillStyle = colorW;
+			c.fillRect(-50, -50, 40, 20);
+			impact[index] = true;
+			xWall[index] = -50;
+			yWall[index] = -50;
+			if(x == (xBrick+40) || (x+5) == xBrick){
+				//alert("1brick x,y:"+xBrick+","+yBrick+" <br>ball x,y:"+x+","+y);
 				speedX = speedX * -1;
 			}
-			if(yBrick <= y && y <= (yBrick+20)){
+			if((y+5) == yBrick || y == (yBrick+20)){
+				//alert("2brick x,y:"+xBrick+","+yBrick+" <br>ball x,y:"+x+","+y);
 				speedY = speedY * -1;
 			}
-
-
-		}else if(!impact){
+		}else if(!impact[index]){
 			c.fillStyle = colorW;
 			c.fillRect(xBrick, yBrick, wBrick, hBrick);
 		}
