@@ -21,24 +21,21 @@ var brickX;
 var brickY;
 var impact = new Array(55);
 
-/*
 var board;
-*/
-/*addEventListener('resize', () => {
-  canvas.width = 600;
-  canvas.height = 400;
-});*/
+var mouseX = 100;
 
 var ball; 
 
 document.body.onload = start();
+canvas.addEventListener('mousemove', mouseM, false);
 
 function start(){
 	canvas.width = 600;
   canvas.height = 400;
 	makeObstacles();
 	ball = new object("black", 10, 190, 5, 5);
-	
+	board = new gameBoard();
+
 	for(var i = 0; i < 55; i++){
 		impact[i]=false;
 		if(i>-1 && i<11){
@@ -57,85 +54,28 @@ function start(){
 			brick[i] = new wall("cyan", xWall[i], yWall[i], 40, 20, i);
 		}
 	}
-	//alert("brick:"+brick+" xwall:"+xWall+" ywall:"+yWall+" impact:"+impact);
 	interval = setInterval(updateGameArea, 20);
 }
 
-function updateBall(){	
+function gameBoard(){
+	this.update = function(){
 		c.fillStyle = "black";
-		c.fillRect(x, y, 5, 5);
+		c.fillRect(mouseX, 350, 100, 10);
+		if(x <= (mouseX+100) && (x+5) >=mouseX && (y+5) >= 350 && y <= 360){
+			if((y+5) == 350){
+				speedY = speedY * -1;
+			}
+		}
+	}
+}
+
+function mouseM(e){
+	var rect = canvas.getBoundingClientRect();
+	mouseX = e.pageX - (rect.left+50);
 }
 
 function wall(colorW, xBrick, yBrick, wBrick, hBrick, index){
-	this.crash = function(){
-		/*
-		//alert("spd x:"+speedX+" spd y:"+speedY);
-		if(!impact[index]){
-				c.fillStyle = colorW;
-				c.fillRect(xBrick, yBrick, wBrick, hBrick);
-			}//moving bottom right
-		if(speedX>1 && speedY>1){
-			//alert("moving bottom right");
-				if(x <= (xWall[index]+20) && (x+5) >=xWall[index] && (y+5) >= yWall[index] && y <= (yWall[index]+20)){
-					c.fillStyle = colorW;
-					c.fillRect(-50, -50, 40, 20);
-					imp = true;
-					xWall[index] = -50;
-					yWall[index] = -50;
-					speedY = speedY * -1;
-				}
-				
-			}//moving upper right
-			else if(speedX<1 && speedY>1){
-				//alert("moving upper right");
-				if(x <= (xWall[index]+20) && (x+5) >=xWall[index] && (y+5) >= yWall[index] && y <= (yWall[index]+20)){
-					c.fillStyle = colorW;
-					c.fillRect(-50, -50, 40, 20);
-					imp = true;
-					xWall[index] = -50;
-					yWall[index] = -50;
-					speedY = speedY * -1;
-				}
-			}//moving bottom left
-			else if(speedX>1 && speedY<1){
-				//alert("moving bottom left");				
-				if((x+5) <= xWall[index]+20 && (y+5) >= yWall[index]){
-					c.fillStyle = colorW;
-					c.fillRect(-50, -50, 40, 20);
-					imp = true;
-					xWall[index] = -50;
-					yWall[index] = -50;
-					speedY = speedY * -1;
-				}
-			}
-			//moving upper left
-			else if(speedX<1 && speedY<1){
-				//alert("moving upper left");
-			}
-		*/
-		//if(x <= (xWall[index]+20) && (x+6) >=xWall[index] && (y+6) >= yWall[index] && y <= (yWall[index]+20)){
-		/*
-		if(x <= (xBrick+20) && (x+5) >=xBrick && (y+5) >= yBrick && y <= (yBrick+40)){
-			alert("ballx:"+x+" bally:"+y+" wallx:"+xBrick+" wally:"+yBrick+" index:"+index);
-			c.fillStyle = colorW;
-			c.fillRect(-50, -50, 40, 20);
-			impact[index] = true;
-			xWall[index] = -50;
-			yWall[index] = -50;
-			if((x+5) >= xBrick && x <= (xBrick+20)){
-				speedX = speedX * -1;
-				xBrick = xWall[index];
-			}
-			if((y+5) >= yBrick && y <= (yBrick+40)){
-				speedY = speedY * -1;
-				yBrick = yWall[index];
-			}
-			//alert("xbr:"+xBrick+" ybr:"+yBrick+" xwal:"+xWall[index]+" ywal:"+yWall[index]);
-		}else if(!impact[index]){
-			c.fillStyle = colorW;
-			c.fillRect(xBrick, yBrick, wBrick, hBrick);
-		}*/
-		
+	this.crash = function(){		
 		if(x <= (xBrick+40) && (x+5) >=xBrick && (y+5) >= yBrick && y <= (yBrick+20)){
 			c.fillStyle = colorW;
 			c.fillRect(-50, -50, 40, 20);
@@ -177,7 +117,6 @@ function stop(){
 }
 */
 function updateGameArea() {
-
 	clear();
 	x = x + speedX;
 	y = y + speedY;
@@ -188,6 +127,7 @@ function updateGameArea() {
 		speedY = speedY * -1;
 	}
 	ball.update();
+	board.update();
 	for(var i = 0; i < 55; i++){
 		brick[i].crash();
 	}
