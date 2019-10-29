@@ -24,9 +24,10 @@ var impact = new Array(55);
 var board;
 var mouseX = 100;
 
-var ball; 
+var ball;
+var winner = true;
 
-document.body.onload = init();
+//document.body.onload = init();
 canvas.addEventListener('mousemove', mouseM, false);
 //canvas.addEventListener('click', start, false);
 
@@ -58,17 +59,29 @@ function init(){
 	interval = setInterval(updateGameArea, 20);
 }
 
-function start(){
+function playing(){
+	document.getElementById("playGame").disabled = true;
+	document.getElementById("playGame").style.visibility = "hidden";
+	//500ms delay
+	setTimeout(function() {
+    init();
+	}, 500);
 }
 
 function gameBoard(){
 	this.update = function(){
 		c.fillStyle = "black";
-		c.fillRect(mouseX, 350, 100, 10);
 		if(x <= (mouseX+100) && (x+5) >=mouseX && (y+5) >= 350 && y <= 360){
 			if((y+5) == 350){
 				speedY = speedY * -1;
 			}
+		}
+		if(mouseX >= 500){
+			c.fillRect(500, 350, 100, 10);
+		}else if(mouseX <= 50){
+			c.fillRect(1, 350, 100, 10);
+		}else{
+			c.fillRect(mouseX, 350, 100, 10);
 		}
 	}
 }
@@ -101,6 +114,14 @@ function wall(colorW, xBrick, yBrick, wBrick, hBrick, index){
 	}
 }
 
+function checkWin(){
+	for(var i = 0; i < 55; i++){
+		if(xWall[i] !== -50 && yWall[i] !== -50){
+			winner = false;
+		}
+	}
+}
+
 function object(colorOf, xValue, yValue, wValue, hValue){
 	w = wValue;
 	h = hValue;
@@ -115,11 +136,19 @@ function object(colorOf, xValue, yValue, wValue, hValue){
 function clear(){
 	c.clearRect(0, 0, canvas.width, canvas.height);
 }
-/*
+
 function stop(){
 	clearInterval(interval);
+	checkWin();
+	if(winner){
+		alert("You Win!");
+	}else{
+		alert("You Lose!");
+	}
+	speedY = -1;
+	init();
 }
-*/
+
 function updateGameArea() {
 	clear();
 	x = x + speedX;
@@ -127,8 +156,11 @@ function updateGameArea() {
 	if(x > 595 || x < 1){
 		speedX = speedX * -1;
 	}
-	if(y > 395 || y < 1){
+	if(y < 1){
 		speedY = speedY * -1;
+	}
+	if(y > 360){
+		stop();
 	}
 	ball.update();
 	board.update();
