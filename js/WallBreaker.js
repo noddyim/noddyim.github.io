@@ -12,7 +12,7 @@ var w;
 var h;
 var colour;
 var speedX = 1;
-var speedY = 1;
+var speedY = -1;
 
 var xWall = new Array(55);
 var yWall = new Array(55);
@@ -26,14 +26,15 @@ var mouseX = 100;
 
 var ball; 
 
-document.body.onload = start();
+document.body.onload = init();
 canvas.addEventListener('mousemove', mouseM, false);
+//canvas.addEventListener('click', start, false);
 
-function start(){
+function init(){
 	canvas.width = 600;
   canvas.height = 400;
 	makeObstacles();
-	ball = new object("black", 10, 190, 5, 5);
+	ball = new object("black", 200, 350, 5, 5);
 	board = new gameBoard();
 
 	for(var i = 0; i < 55; i++){
@@ -55,6 +56,9 @@ function start(){
 		}
 	}
 	interval = setInterval(updateGameArea, 20);
+}
+
+function start(){
 }
 
 function gameBoard(){
