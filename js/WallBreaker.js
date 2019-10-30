@@ -223,8 +223,8 @@ function output(){
 	if(speed == 5){
 		temp = 40;
 	}
-	count = (count + score) * 15;
-	document.getElementById("score").innerHTML = "Score: " + count;
+	count = score;
+	document.getElementById("score").innerHTML = "Score: " + (count*15);
 	document.getElementById("blocksLeft").innerHTML = "Blocks Left: " + (55 - score);
 	document.getElementById("speed").innerHTML = "Speed: " + temp;
 	
