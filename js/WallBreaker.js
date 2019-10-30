@@ -39,9 +39,15 @@ canvas.addEventListener('mousemove', mouseM, false);
 
 function init(){
 	canvas.width = 600;
-  canvas.height = 400;
+	canvas.height = 400;
+	
+	speed = 20;
+	count = 0;
+	speedY = -1;
+	speedX = 1;
+
 	makeObstacles();
-	ball = new object("black", (mouseX+50), 344, 5, 5);
+	ball = new object("black", (mouseX+50), 344, 6, 6);
 	board = new gameBoard();
 
 	for(var i = 0; i < 55; i++){
@@ -92,15 +98,15 @@ function playing(){
 function gameBoard(){
 	this.update = function(){
 		c.fillStyle = "black";
-		if(x <= (mouseX+100) && (x+5) >=mouseX && (y+5) >= 350 && y <= 355){
-			if((y+5) == 350){
+		if(x <= (mouseX+100) && (x+6) >=mouseX && (y+6) >= 350 && y <= 355){
+			if((y+6) == 350){
 				speedY = speedY * -1;
 			}
 		}
 		if(mouseX >= 500){
 			c.fillRect(500, 350, 100, 10);
-		}else if(mouseX <= 50){
-			c.fillRect(1, 350, 100, 10);
+		}else if(mouseX <= 1){
+			c.fillRect(0, 350, 100, 10);
 		}else{
 			c.fillRect(mouseX, 350, 100, 10);
 		}
@@ -108,7 +114,7 @@ function gameBoard(){
 }
 
 function diff(){
-	//alert("score:"+score+" speed:"+speed);
+
 	if(score == 12 && speed == 20){
 		speed -= 5;
 		clearInterval(interval);
@@ -134,11 +140,11 @@ function mouseM(e){
 
 function wall(colorW, xBrick, yBrick, wBrick, hBrick, index){
 	this.crash = function(){	
-		checkWin();
-		if(winner){
+		//checkWin();
+		/*if(score==55){
 			stop();
-		}
-		if(x <= (xBrick+40) && (x+5) >=xBrick && (y+5) >= yBrick && y <= (yBrick+20)){
+		}*/
+		if(x <= (xBrick+40) && (x+6) >=xBrick && (y+6) >= yBrick && y <= (yBrick+20)){
 			//alert("bx:"+x+" by:"+y+" wx:"+xBrick+" wy:"+yBrick+" wx40:"+(xBrick+40)+" wy20:"+(yBrick+20));
 			c.fillStyle = colorW;
 			c.fillRect(-50, -50, 40, 20);
@@ -146,10 +152,10 @@ function wall(colorW, xBrick, yBrick, wBrick, hBrick, index){
 			count++;
 			xWall[index] = -50;
 			yWall[index] = -50;
-			if(x == (xBrick+40) || (x+5) == xBrick){
+			if(x == (xBrick+40) || (x+6) == xBrick){
 				speedX = speedX * -1;
 			}
-			if((y+5) == yBrick || y == (yBrick+20)){
+			if((y+6) == yBrick || y == (yBrick+20)){
 				speedY = speedY * -1;
 			}
 			xBrick = xWall[index];
@@ -191,69 +197,52 @@ function object(colorOf, xValue, yValue, wValue, hValue){
 function clear(){
 	c.clearRect(0, 0, canvas.width, canvas.height);
 }
-/*
-function checkScore(age) {
-	alert("age:"+age);
-  return age == true;
-}*/
 
 function output(){
-	//alert("score:"+score+" speed:"+speed);
+
+	soundEffects();
+	diff();
+	
 	score = impact.filter(function(value){
     return value === true;
 	}).length
-	//alert("temp"+temp);  
-	/*
-	//for(var i = 0; i < 55; i++){
-	var counted = {};
-	impact.forEach(function(i) {
-		 counted[i] = (counted[i]||0) + 1;
-		});
-	alert("counted"+counted+" impact:"+impact);
-		
-		temp = impact.includes(true, i);
-		if(temp == true){
-			count++;
-			alert("impact:"+impact+" temp:"+temp+" count:"+count);
-		}
+	if(score == 55){
+		stop();
 	}
-	temp = impact.every(checkScore);
-	alert("impact"+impact+" temp:"+temp);
-	if(temp==true){
-		alert("temp:"+temp);
+	if(speed==20){
+		temp = 10;
 	}
-	var temp;
-	for(temp in impact){
-		if(impact[temp] == true){
-			//alert("temp is true:"+temp);
-			count += 1;
-		}
+	if(speed ==15){
+		temp = 20;
 	}
-	//alert("count:"+count+" impact:"+impact);
-	*/
+	if(speed == 10){
+		temp = 30;
+	}
+	if(speed == 5){
+		temp = 40;
+	}
 	document.getElementById("score").innerHTML = "Score: " + (score * 15);
 	document.getElementById("blocksLeft").innerHTML = "Blocks Left: " + (55 - score);
-	document.getElementById("speed").innerHTML = "Speed: " + speed;
+	document.getElementById("speed").innerHTML = "Speed: " + temp;
 	
 }
 
 function stop(){
 	clearInterval(interval);
 	//checkWin();
-	if(winner){
+	if(score==55){
+		winnerSound();
 		alert("You Win!");
 	}else{
+		loserSound();
 		alert("You Lose!");
 	}
-	speed = 20;
-	count = 0;
-	speedY = -1;
 	init();
 }
 
 function updateGameArea() {
 	clear();
-	diff();
+	//diff();
 	x = x + speedX;
 	y = y + speedY;
 	if(x > 595 || x < 1){
@@ -263,7 +252,7 @@ function updateGameArea() {
 		speedY = speedY * -1;
 	}
 	if(y > 360){
-		checkWin();
+		//checkWin();
 		stop();
 	}
 	ball.update();
@@ -312,4 +301,16 @@ function makeObstacles(){
 			tempX += 45;
 		}
 	}
+}
+function soundEffects(){
+    var x = document.getElementById("soundEffect");
+    x.play();
+}
+function winnerSound(){
+    var x = document.getElementById("winner");
+    x.play();
+}
+function loserSound(){
+    var x = document.getElementById("loser");
+    x.play();
 }
