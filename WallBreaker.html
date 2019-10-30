@@ -36,9 +36,11 @@
   <br>
 </header>
 <body>
-  <h1 style="text-align: center; color: red">Wall Breaker: Under Construction</h1>
+  <h1 style="text-align: center; color: red">Wall Breaker</h1>
   <canvas width="600" height="400"></canvas>
   <div style="float: right">
+    <p style="float: left; color: red; font-size: 15px;">
+      Under Construction.</p><br><br>
     <p id="blocksLeft" style="color: red; font-size: 15px;"></p>
     <p id="speed" style="color: red; font-size: 15px;"></p>
     <p id="score" style="color: red; font-size: 15px;"></p>
@@ -47,6 +49,18 @@
     <p style="float: left; color: red; font-size: 15px;">
       Keep the mouse inside the game to move the board.</p><br>
   </div>
+    <audio id="soundEffect">
+    <source src="audio/Punch.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="winner">
+    <source src="audio/winner.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="loser">
+    <source src="audio/loser.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
 </body>
 <script src="js/WallBreaker.js"></script>
 </html>
