@@ -11,7 +11,11 @@ var x;// = 50;
 var y;// = 180;
 var w;
 var h;
-var colour;
+var color1;
+var color2;
+var color3;
+var color4;
+var color5;
 var speedX = 1;
 var speedY = -1;
 
@@ -20,6 +24,8 @@ var yWall = new Array(55);
 var brick = new Array(55);
 var brickX;
 var brickY;
+var brickW;
+var brickH;
 var impact = new Array(55);
 
 var board;
@@ -27,7 +33,7 @@ var mouseX = 100;
 var score = 0;
 
 var ball;
-var winner = false;
+var level = 1;
 var speed = 20;
 var count = 0;
 
@@ -42,30 +48,36 @@ function init(){
 	canvas.height = 400;
 	
 	speed = 20;
-	count = 0;
 	speedY = -1;
 	speedX = 1;
 
-	makeObstacles();
-	ball = new object("black", (mouseX+50), 344, 6, 6);
+	if(level == 1){
+		count = 0;
+		levelOne();
+	}else if(level == 2){
+		levelTwo();
+	}
+	//levelTwo();
+	
+	ball = new object("black", (mouseX+50), 342, 7, 7);
 	board = new gameBoard();
 
 	for(var i = 0; i < 55; i++){
 		impact[i]=false;
 		if(i>-1 && i<11){
-			brick[i] = new wall("gold", xWall[i], yWall[i], 40, 20, i);
+			brick[i] = new wall(color1, xWall[i], yWall[i], brickW, brickH, i);
 		}
 		if(i>10 && i<22){
-			brick[i] = new wall("red", xWall[i], yWall[i], 40, 20, i);
+			brick[i] = new wall(color2, xWall[i], yWall[i], brickW, brickH, i);
 		}
 		if(i>21 && i<33){
-			brick[i] = new wall("green", xWall[i], yWall[i], 40, 20, i);
+			brick[i] = new wall(color3, xWall[i], yWall[i], brickW, brickH, i);
 		}
 		if(i>32 && i<44){
-			brick[i] = new wall("blue", xWall[i], yWall[i], 40, 20, i);
+			brick[i] = new wall(color4, xWall[i], yWall[i], brickW, brickH, i);
 		}
 		if(i>43 && i<55){
-			brick[i] = new wall("cyan", xWall[i], yWall[i], 40, 20, i);
+			brick[i] = new wall(color5, xWall[i], yWall[i], brickW, brickH, i);
 		}
 	}
 	canvas.addEventListener('click', playing, false);
@@ -84,12 +96,7 @@ function updateBoard(){
 }
 
 function playing(){
-	//document.getElementById("playGame").disabled = true;
-	//document.getElementById("playGame").style.visibility = "hidden";
-	//500ms delay
-	/*setTimeout(function() {
-    init();
-	}, 500);*/
+	
 	clearInterval(boardInterval);
 	interval = setInterval(updateGameArea, speed);
 	canvas.removeEventListener('click', playing);
@@ -98,8 +105,8 @@ function playing(){
 function gameBoard(){
 	this.update = function(){
 		c.fillStyle = "black";
-		if(x <= (mouseX+100) && (x+6) >=mouseX && (y+6) >= 350 && y <= 355){
-			if((y+6) == 350){
+		if(x <= (mouseX+100) && (x+7) >=mouseX && (y+7) >= 350 && y <= 355){
+			if((y+7) == 350){
 				speedY = speedY * -1;
 			}
 		}
@@ -139,28 +146,23 @@ function mouseM(e){
 }
 
 function wall(colorW, xBrick, yBrick, wBrick, hBrick, index){
-	this.crash = function(){	
-		//checkWin();
-		/*if(score==55){
-			stop();
-		}*/
-		if(x <= (xBrick+40) && (x+6) >=xBrick && (y+6) >= yBrick && y <= (yBrick+20)){
-			//alert("bx:"+x+" by:"+y+" wx:"+xBrick+" wy:"+yBrick+" wx40:"+(xBrick+40)+" wy20:"+(yBrick+20));
+	this.crash = function(){			
+		if(x <= (xBrick+brickW) && (x+7) >=xBrick && (y+7) >= yBrick && y <= (yBrick+brickH)){
 			c.fillStyle = colorW;
 			c.fillRect(-50, -50, 40, 20);
 			impact[index] = true;
-			count++;
+			//count++;
 			xWall[index] = -50;
 			yWall[index] = -50;
-			if(x == (xBrick+40) || (x+6) == xBrick){
+			if(x == (xBrick+brickW) || (x+7) == xBrick){
 				speedX = speedX * -1;
 			}
-			if((y+6) == yBrick || y == (yBrick+20)){
+			if((y+7) == yBrick || y == (yBrick+brickH)){
 				speedY = speedY * -1;
 			}
 			xBrick = xWall[index];
 			yBrick = yWall[index];
-			//alert("impact:"+impact);
+			
 			output();
 		}else if(!impact[index]){
 			c.fillStyle = colorW;
@@ -188,9 +190,9 @@ function object(colorOf, xValue, yValue, wValue, hValue){
 	}
 	this.pregame = function(){
 		c.fillStyle = colorOf;
-		c.fillRect((mouseX+50), 344, w, h);
+		c.fillRect((mouseX+50), 342, w, h);
 		x = mouseX+50;
-		y = 344;
+		y = 342;
 	}
 }
 
@@ -221,7 +223,8 @@ function output(){
 	if(speed == 5){
 		temp = 40;
 	}
-	document.getElementById("score").innerHTML = "Score: " + (score * 15);
+	count = (count + score) * 15;
+	document.getElementById("score").innerHTML = "Score: " + count;
 	document.getElementById("blocksLeft").innerHTML = "Blocks Left: " + (55 - score);
 	document.getElementById("speed").innerHTML = "Speed: " + temp;
 	
@@ -231,7 +234,9 @@ function stop(){
 	clearInterval(interval);
 	//checkWin();
 	if(score==55){
+		//count = score;
 		winnerSound();
+		level = 2;
 		alert("You Win!");
 	}else{
 		loserSound();
@@ -263,8 +268,15 @@ function updateGameArea() {
 	}
 }
 
-function makeObstacles(){
+function levelOne(){
 	var tempX = 50;
+	brickH = 20;
+	brickW = 40;
+	color1 = "gold";
+	color2 = "red";
+	color3 = "green";
+	color4 = "blue";
+	color5 = "cyan";
 
 	for(var i = 0; i < xWall.length; i++){
 		if(i >=0 && i <= 10){
@@ -302,6 +314,53 @@ function makeObstacles(){
 		}
 	}
 }
+function levelTwo(){
+	var tempX = 5;
+	brickH = 30;
+	brickW = 49;
+	color1 = "Aquamarine";
+	color2 = "BurlyWood";
+	color3 = "gold";
+	color4 = "BurlyWood";
+	color5 = "Aquamarine";
+
+	for(var i = 0; i < xWall.length; i++){
+		if(i >=0 && i <= 10){
+			xWall[i] = tempX;
+			yWall[i] = 50;
+			tempX += 54;
+			if(i == 10){
+				tempX = 5;
+			}
+		}else if(i > 10 && i <=21){
+			xWall[i] = tempX;
+			yWall[i] = 85;
+			tempX += 54;
+			if(i == 21){
+				tempX = 5;
+			}
+		}else if(i > 21 && i <=32){
+			xWall[i] = tempX;
+			yWall[i] = 120;
+			tempX += 54;
+			if(i == 32){
+				tempX = 5;
+			}
+		}else if(i > 32 && i <=43){
+			xWall[i] = tempX;
+			yWall[i] = 155;
+			tempX += 54;
+			if(i == 43){
+				tempX = 5;
+			}
+		}else if(i > 43 && i <=55){
+			xWall[i] = tempX;
+			yWall[i] = 190;
+			tempX += 54;
+		}
+	}
+}
+
 function soundEffects(){
     var x = document.getElementById("soundEffect");
     x.play();
