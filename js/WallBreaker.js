@@ -6,6 +6,7 @@ const c = canvas.getContext('2d');
 //var w = canvas.getContext("2d");
 
 var interval;
+var boardInterval;
 var x;// = 50;
 var y;// = 180;
 var w;
@@ -26,16 +27,18 @@ var mouseX = 100;
 
 var ball;
 var winner = true;
+var speed = 20;
+var count = 0;
 
-//document.body.onload = init();
+document.body.onload = init();
 canvas.addEventListener('mousemove', mouseM, false);
-//canvas.addEventListener('click', start, false);
+//canvas.addEventListener('click', playing, false);
 
 function init(){
 	canvas.width = 600;
   canvas.height = 400;
 	makeObstacles();
-	ball = new object("black", 200, 350, 5, 5);
+	ball = new object("black", (mouseX+50), 344, 5, 5);
 	board = new gameBoard();
 
 	for(var i = 0; i < 55; i++){
@@ -56,22 +59,36 @@ function init(){
 			brick[i] = new wall("cyan", xWall[i], yWall[i], 40, 20, i);
 		}
 	}
-	interval = setInterval(updateGameArea, 20);
+	canvas.addEventListener('click', playing, false);
+	updateGameArea();
+	boardInterval = setInterval(updateBoard, speed);
+}
+
+function updateBoard(){
+	clear();
+	ball.pregame();
+	board.update();
+	for(var i = 0; i < 55; i++){
+		brick[i].crash();
+	}
 }
 
 function playing(){
-	document.getElementById("playGame").disabled = true;
-	document.getElementById("playGame").style.visibility = "hidden";
+	//document.getElementById("playGame").disabled = true;
+	//document.getElementById("playGame").style.visibility = "hidden";
 	//500ms delay
-	setTimeout(function() {
+	/*setTimeout(function() {
     init();
-	}, 500);
+	}, 500);*/
+	clearInterval(boardInterval);
+	interval = setInterval(updateGameArea, speed);
+	canvas.removeEventListener('click', playing);
 }
 
 function gameBoard(){
 	this.update = function(){
 		c.fillStyle = "black";
-		if(x <= (mouseX+100) && (x+5) >=mouseX && (y+5) >= 350 && y <= 360){
+		if(x <= (mouseX+100) && (x+5) >=mouseX && (y+5) >= 350 && y <= 355){
 			if((y+5) == 350){
 				speedY = speedY * -1;
 			}
@@ -86,17 +103,43 @@ function gameBoard(){
 	}
 }
 
+function diff(){
+
+	if(count == 12 && speed > 14){
+		speed -= 5;
+		clearInterval(interval);
+		interval = setInterval(updateGameArea, speed);
+
+	}
+	if(count == 24 && speed > 9){
+		speed -= 5;
+		clearInterval(interval);
+		interval = setInterval(updateGameArea, speed);
+	}
+	if(count == 36 && speed > 4){
+		speed -= 5;
+		clearInterval(interval);
+		interval = setInterval(updateGameArea, speed);
+	}
+}
+
 function mouseM(e){
 	var rect = canvas.getBoundingClientRect();
 	mouseX = e.pageX - (rect.left+50);
 }
 
 function wall(colorW, xBrick, yBrick, wBrick, hBrick, index){
-	this.crash = function(){		
+	this.crash = function(){	
+		checkWin();
+		if(winner){
+			stop();
+		}
 		if(x <= (xBrick+40) && (x+5) >=xBrick && (y+5) >= yBrick && y <= (yBrick+20)){
+			//alert("bx:"+x+" by:"+y+" wx:"+xBrick+" wy:"+yBrick+" wx40:"+(xBrick+40)+" wy20:"+(yBrick+20));
 			c.fillStyle = colorW;
 			c.fillRect(-50, -50, 40, 20);
 			impact[index] = true;
+			count++;
 			xWall[index] = -50;
 			yWall[index] = -50;
 			if(x == (xBrick+40) || (x+5) == xBrick){
@@ -131,6 +174,12 @@ function object(colorOf, xValue, yValue, wValue, hValue){
 		c.fillStyle = colorOf;
 		c.fillRect(x, y, w, h);
 	}
+	this.pregame = function(){
+		c.fillStyle = colorOf;
+		c.fillRect((mouseX+50), 344, w, h);
+		x = mouseX+50;
+		y = 344;
+	}
 }
 
 function clear(){
@@ -139,18 +188,21 @@ function clear(){
 
 function stop(){
 	clearInterval(interval);
-	checkWin();
+	//checkWin();
 	if(winner){
 		alert("You Win!");
 	}else{
 		alert("You Lose!");
 	}
+	speed = 20;
+	count = 0;
 	speedY = -1;
 	init();
 }
 
 function updateGameArea() {
 	clear();
+	diff();
 	x = x + speedX;
 	y = y + speedY;
 	if(x > 595 || x < 1){
@@ -160,6 +212,7 @@ function updateGameArea() {
 		speedY = speedY * -1;
 	}
 	if(y > 360){
+		checkWin();
 		stop();
 	}
 	ball.update();
