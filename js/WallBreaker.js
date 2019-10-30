@@ -24,11 +24,14 @@ var impact = new Array(55);
 
 var board;
 var mouseX = 100;
+var score = 0;
 
 var ball;
-var winner = true;
+var winner = false;
 var speed = 20;
 var count = 0;
+
+var temp;
 
 document.body.onload = init();
 canvas.addEventListener('mousemove', mouseM, false);
@@ -68,6 +71,7 @@ function updateBoard(){
 	clear();
 	ball.pregame();
 	board.update();
+	output();
 	for(var i = 0; i < 55; i++){
 		brick[i].crash();
 	}
@@ -104,19 +108,19 @@ function gameBoard(){
 }
 
 function diff(){
-
-	if(count == 12 && speed > 14){
+	//alert("score:"+score+" speed:"+speed);
+	if(score == 12 && speed == 20){
 		speed -= 5;
 		clearInterval(interval);
 		interval = setInterval(updateGameArea, speed);
 
 	}
-	if(count == 24 && speed > 9){
+	if(score == 24 && speed == 15){
 		speed -= 5;
 		clearInterval(interval);
 		interval = setInterval(updateGameArea, speed);
 	}
-	if(count == 36 && speed > 4){
+	if(score == 36 && speed == 10){
 		speed -= 5;
 		clearInterval(interval);
 		interval = setInterval(updateGameArea, speed);
@@ -150,6 +154,8 @@ function wall(colorW, xBrick, yBrick, wBrick, hBrick, index){
 			}
 			xBrick = xWall[index];
 			yBrick = yWall[index];
+			//alert("impact:"+impact);
+			output();
 		}else if(!impact[index]){
 			c.fillStyle = colorW;
 			c.fillRect(xBrick, yBrick, wBrick, hBrick);
@@ -185,6 +191,51 @@ function object(colorOf, xValue, yValue, wValue, hValue){
 function clear(){
 	c.clearRect(0, 0, canvas.width, canvas.height);
 }
+/*
+function checkScore(age) {
+	alert("age:"+age);
+  return age == true;
+}*/
+
+function output(){
+	//alert("score:"+score+" speed:"+speed);
+	score = impact.filter(function(value){
+    return value === true;
+	}).length
+	//alert("temp"+temp);  
+	/*
+	//for(var i = 0; i < 55; i++){
+	var counted = {};
+	impact.forEach(function(i) {
+		 counted[i] = (counted[i]||0) + 1;
+		});
+	alert("counted"+counted+" impact:"+impact);
+		
+		temp = impact.includes(true, i);
+		if(temp == true){
+			count++;
+			alert("impact:"+impact+" temp:"+temp+" count:"+count);
+		}
+	}
+	temp = impact.every(checkScore);
+	alert("impact"+impact+" temp:"+temp);
+	if(temp==true){
+		alert("temp:"+temp);
+	}
+	var temp;
+	for(temp in impact){
+		if(impact[temp] == true){
+			//alert("temp is true:"+temp);
+			count += 1;
+		}
+	}
+	//alert("count:"+count+" impact:"+impact);
+	*/
+	document.getElementById("score").innerHTML = "Score: " + (score * 15);
+	document.getElementById("blocksLeft").innerHTML = "Blocks Left: " + (55 - score);
+	document.getElementById("speed").innerHTML = "Speed: " + speed;
+	
+}
 
 function stop(){
 	clearInterval(interval);
@@ -217,6 +268,7 @@ function updateGameArea() {
 	}
 	ball.update();
 	board.update();
+	//output();
 	for(var i = 0; i < 55; i++){
 		brick[i].crash();
 	}
