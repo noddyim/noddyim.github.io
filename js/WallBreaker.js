@@ -54,16 +54,17 @@ function init(){
 	speed = 20;
 	speedY = -1;
 	speedX = 1;
-/*
+
 	if(level == 1){
 		count = 0;
 		levelOne();
 	}else if(level == 2){
 		levelTwo();
-	}else if(level ==3){
+	}else if(level == 3){
 		levelThree();
-	}*/
-	levelFour();
+	}else if (level == 4){
+		levelFour();
+	}
 	
 	ball = new object("black", (mouseX+50), 342, 7, 7);
 	board = new gameBoard();
@@ -281,6 +282,8 @@ function stop(){
 			level = 2;
 		}else if(level == 2){
 			level = 3;
+		}else if (level == 3){
+			level = 4;
 		}
 		alert("You Win!");
 	}else{
