@@ -120,11 +120,17 @@ function gameBoard(){
 			sound.play();
 		}
 		c.fillStyle = "black";
-		if(x <= (mouseX+100) && (x+7) >=mouseX && (y+7) >= 350 && y <= 355){
+		if(x <= (mouseX+100) && (x+7) >= mouseX && (y+7) >= 350 && y <= 355){
 			if((y+7) == 350){
 				speedY = speedY * -1;
+				if(x <= (mouseX+25)){
+					speedX = -1;
+				}else if(x >= (mouseX+75)){
+					speedX = 1;
+				}
 			}
 		}
+
 		if(mouseX >= 500){
 			c.fillRect(500, 350, 100, 10);
 		}else if(mouseX <= 1){
