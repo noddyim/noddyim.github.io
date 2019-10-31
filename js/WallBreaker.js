@@ -18,6 +18,7 @@ var color4;
 var color5;
 var speedX = 1;
 var speedY = -1;
+var hits = 0;
 
 var xWall = new Array(55);
 var yWall = new Array(55);
@@ -56,8 +57,9 @@ function init(){
 		levelOne();
 	}else if(level == 2){
 		levelTwo();
+	}else if(level ==3){
+		levelThree();
 	}
-	//levelTwo();
 	
 	ball = new object("black", (mouseX+50), 342, 7, 7);
 	board = new gameBoard();
@@ -148,12 +150,26 @@ function mouseM(e){
 function wall(colorW, xBrick, yBrick, wBrick, hBrick, index){
 	this.crash = function(){			
 		if(x <= (xBrick+brickW) && (x+7) >=xBrick && (y+7) >= yBrick && y <= (yBrick+brickH)){
-			c.fillStyle = colorW;
-			c.fillRect(-50, -50, 40, 20);
-			impact[index] = true;
-			//count++;
-			xWall[index] = -50;
-			yWall[index] = -50;
+			if(hits == 0){
+				c.fillStyle = colorW;
+				c.fillRect(-50, -50, 40, 20);
+				impact[index] = true;
+				xWall[index] = -50;
+				yWall[index] = -50;
+			}else if (hits == 1){
+				if(colorW == "purple"){
+					//hits = hits - 1;
+					c.fillStyle = colorW;
+					c.fillRect(-50, -50, 40, 20);
+					impact[index] = true;
+					xWall[index] = -50;
+					yWall[index] = -50;
+				}
+				c.fillStyle = "purple";
+				colorW = "purple";
+				c.fillRect(xBrick, yBrick, wBrick, hBrick);
+				//hits = hits -1;
+			}
 			if(x == (xBrick+brickW) || (x+7) == xBrick){
 				speedX = speedX * -1;
 			}
@@ -239,7 +255,11 @@ function stop(){
 	if(score==55){
 		//count = score;
 		winnerSound();
-		level = 2;
+		if(level == 1){
+			level = 2;
+		}else if(level == 2){
+			level = 3;
+		}
 		alert("You Win!");
 	}else{
 		loserSound();
@@ -326,6 +346,54 @@ function levelTwo(){
 	color3 = "gold";
 	color4 = "BurlyWood";
 	color5 = "Aquamarine";
+
+	for(var i = 0; i < xWall.length; i++){
+		if(i >=0 && i <= 10){
+			xWall[i] = tempX;
+			yWall[i] = 50;
+			tempX += 54;
+			if(i == 10){
+				tempX = 5;
+			}
+		}else if(i > 10 && i <=21){
+			xWall[i] = tempX;
+			yWall[i] = 85;
+			tempX += 54;
+			if(i == 21){
+				tempX = 5;
+			}
+		}else if(i > 21 && i <=32){
+			xWall[i] = tempX;
+			yWall[i] = 120;
+			tempX += 54;
+			if(i == 32){
+				tempX = 5;
+			}
+		}else if(i > 32 && i <=43){
+			xWall[i] = tempX;
+			yWall[i] = 155;
+			tempX += 54;
+			if(i == 43){
+				tempX = 5;
+			}
+		}else if(i > 43 && i <=55){
+			xWall[i] = tempX;
+			yWall[i] = 190;
+			tempX += 54;
+		}
+	}
+}
+
+function levelThree(){
+	var tempX = 5;
+	brickH = 30;
+	brickW = 49;
+	color1 = "blue";
+	color2 = "green";
+	color3 = "yellow";
+	color4 = "orange";
+	color5 = "red";
+	hits = 1;
 
 	for(var i = 0; i < xWall.length; i++){
 		if(i >=0 && i <= 10){
