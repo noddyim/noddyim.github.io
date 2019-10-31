@@ -4,6 +4,7 @@ const canvas = document.querySelector('canvas');
 // initiating 2D context on it
 const c = canvas.getContext('2d');
 //var w = canvas.getContext("2d");
+//const checkbox = $("#musicCheck");
 
 var interval;
 var boardInterval;
@@ -28,6 +29,7 @@ var brickY;
 var brickW;
 var brickH;
 var impact = new Array(55);
+//var sound;
 
 var board;
 var mouseX = 100;
@@ -45,13 +47,14 @@ canvas.addEventListener('mousemove', mouseM, false);
 //canvas.addEventListener('click', playing, false);
 
 function init(){
+
 	canvas.width = 600;
 	canvas.height = 400;
 	
 	speed = 20;
 	speedY = -1;
 	speedX = 1;
-
+/*
 	if(level == 1){
 		count = 0;
 		levelOne();
@@ -59,7 +62,8 @@ function init(){
 		levelTwo();
 	}else if(level ==3){
 		levelThree();
-	}
+	}*/
+	levelFour();
 	
 	ball = new object("black", (mouseX+50), 342, 7, 7);
 	board = new gameBoard();
@@ -123,22 +127,39 @@ function gameBoard(){
 }
 
 function diff(){
-
-	if(score == 12 && speed == 20){
-		speed -= 5;
-		clearInterval(interval);
-		interval = setInterval(updateGameArea, speed);
-
+	if(level < 3){
+		if(score == 10 && speed == 20){
+			speed -= 5;
+			clearInterval(interval);
+			interval = setInterval(updateGameArea, speed);
+		}
+		if(score == 20 && speed == 15){
+			speed -= 5;
+			clearInterval(interval);
+			interval = setInterval(updateGameArea, speed);
+		}
+		if(score == 30 && speed == 10){
+			speed -= 5;
+			clearInterval(interval);
+			interval = setInterval(updateGameArea, speed);
+		}
 	}
-	if(score == 24 && speed == 15){
-		speed -= 5;
-		clearInterval(interval);
-		interval = setInterval(updateGameArea, speed);
-	}
-	if(score == 36 && speed == 10){
-		speed -= 5;
-		clearInterval(interval);
-		interval = setInterval(updateGameArea, speed);
+	else{
+		if(score == 10 && speed == 15){
+			speed -= 5;
+			clearInterval(interval);
+			interval = setInterval(updateGameArea, speed);
+		}
+		if(score == 20 && speed == 10){
+			speed -= 5;
+			clearInterval(interval);
+			interval = setInterval(updateGameArea, speed);
+		}
+		if(score == 30 && speed == 5){
+			speed -= 4;
+			clearInterval(interval);
+			interval = setInterval(updateGameArea, speed);
+		}
 	}
 }
 
@@ -217,8 +238,9 @@ function clear(){
 }
 
 function output(){
-
-	soundEffects();
+	if (document.getElementById("musicCheck").checked){
+		//soundEffects();		
+	}
 	diff();
 	
 	score = impact.filter(function(value){
@@ -432,9 +454,58 @@ function levelThree(){
 	}
 }
 
+function levelFour(){
+	var tempX = 10;
+	brickH = 30;
+	brickW = 49;
+	color1 = "LightGreen";
+	color2 = "MediumSpringGreen";
+	color3 = "SpringGreen";
+	color4 = "MediumSeaGreen";
+	color5 = "SeaGreen";
+	hits = 1;
+	speed = 15;
+
+	for(var i = 0; i < xWall.length; i++){
+		if(i >=0 && i <= 10){
+			xWall[i] = tempX;
+			yWall[i] = 50;
+			tempX += 53;
+			if(i == 10){
+				tempX = 10;
+			}
+		}else if(i > 10 && i <=21){
+			xWall[i] = tempX;
+			yWall[i] = 85;
+			tempX += 53;
+			if(i == 21){
+				tempX = 10;
+			}
+		}else if(i > 21 && i <=32){
+			xWall[i] = tempX;
+			yWall[i] = 120;
+			tempX += 53;
+			if(i == 32){
+				tempX = 10;
+			}
+		}else if(i > 32 && i <=43){
+			xWall[i] = tempX;
+			yWall[i] = 155;
+			tempX += 53;
+			if(i == 43){
+				tempX = 10;
+			}
+		}else if(i > 43 && i <=55){
+			xWall[i] = tempX;
+			yWall[i] = 190;
+			tempX += 53;
+		}
+	}
+}
+
 function soundEffects(){
-    var x = document.getElementById("soundEffect");
-    x.play();
+	var x = document.getElementById("soundEffect");
+	x.play();
 }
 function winnerSound(){
     var x = document.getElementById("winner");
@@ -444,3 +515,14 @@ function loserSound(){
     var x = document.getElementById("loser");
     x.play();
 }
+/*
+checkbox.change(function(event) {
+    var checkbox1 = event.target;
+    //sound = document.getElementById("soundEffect");
+
+    if (checkbox1.checked) {
+        sound = document.getElementById("soundEffect");
+    } else {
+        sound.src = "";
+    }
+});*/
