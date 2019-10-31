@@ -271,6 +271,7 @@ function output(){
 	document.getElementById("score").innerHTML = "Score: " + (count*15);
 	document.getElementById("blocksLeft").innerHTML = "Blocks Left: " + (55 - score);
 	document.getElementById("speed").innerHTML = "Speed: " + temp;
+	document.getElementById("level").innerHTML = "Level: " + level;
 	
 }
 
