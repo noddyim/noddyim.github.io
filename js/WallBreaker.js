@@ -38,7 +38,7 @@ var score = 0;
 
 var ball;
 var level = 1;
-var speed = 20;
+var speed = 15;
 var count = 0;
 
 var temp;
@@ -143,35 +143,45 @@ function gameBoard(){
 
 function diff(){
 	if(level < 3){
-		if(score == 10 && speed == 20){
-			speed -= 5;
+		if(score == 15 && speed == 15){
+			speed -= 3;
 			clearInterval(interval);
 			interval = setInterval(updateGameArea, speed);
 		}
-		if(score == 20 && speed == 15){
-			speed -= 5;
+		if(score == 30 && speed == 12){
+			speed -= 3;
 			clearInterval(interval);
 			interval = setInterval(updateGameArea, speed);
 		}
-		if(score == 30 && speed == 10){
-			speed -= 5;
+		if(score == 50 && speed == 9){
+			speed -= 3;
 			clearInterval(interval);
 			interval = setInterval(updateGameArea, speed);
 		}
 	}
 	else{
 		if(score == 10 && speed == 15){
-			speed -= 5;
+			speed -= 3;
 			clearInterval(interval);
 			interval = setInterval(updateGameArea, speed);
 		}
-		if(score == 20 && speed == 10){
-			speed -= 5;
+		if(score == 20 && speed == 12){
+			speed -= 3;
 			clearInterval(interval);
 			interval = setInterval(updateGameArea, speed);
 		}
-		if(score == 30 && speed == 5){
-			speed -= 4;
+		if(score == 30 && speed == 9){
+			speed -= 3;
+			clearInterval(interval);
+			interval = setInterval(updateGameArea, speed);
+		}
+		if(score == 40 && speed == 6){
+			speed -= 3;
+			clearInterval(interval);
+			interval = setInterval(updateGameArea, speed);
+		}
+		if(score == 50 && speed == 3){
+			speed -= 2;
 			clearInterval(interval);
 			interval = setInterval(updateGameArea, speed);
 		}
