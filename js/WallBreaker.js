@@ -52,7 +52,7 @@ function init(){
 	canvas.width = 600;
 	canvas.height = 400;
 
-	speed = 20;
+	speed = 15;
 	speedY = -1;
 	speedX = 1;
 	
@@ -143,44 +143,44 @@ function gameBoard(){
 
 function diff(){
 	if(level < 3){
-		if(score == 15 && speed == 15){
+		if(score == 14 && speed == 15){
 			speed -= 3;
 			clearInterval(interval);
 			interval = setInterval(updateGameArea, speed);
 		}
-		if(score == 30 && speed == 12){
+		if(score == 29 && speed == 12){
 			speed -= 3;
 			clearInterval(interval);
 			interval = setInterval(updateGameArea, speed);
 		}
-		if(score == 50 && speed == 9){
+		if(score == 49 && speed == 9){
 			speed -= 3;
 			clearInterval(interval);
 			interval = setInterval(updateGameArea, speed);
 		}
 	}
 	else{
-		if(score == 10 && speed == 15){
+		if(score == 9 && speed == 15){
 			speed -= 3;
 			clearInterval(interval);
 			interval = setInterval(updateGameArea, speed);
 		}
-		if(score == 20 && speed == 12){
+		if(score == 19 && speed == 12){
 			speed -= 3;
 			clearInterval(interval);
 			interval = setInterval(updateGameArea, speed);
 		}
-		if(score == 30 && speed == 9){
+		if(score == 29 && speed == 9){
 			speed -= 3;
 			clearInterval(interval);
 			interval = setInterval(updateGameArea, speed);
 		}
-		if(score == 40 && speed == 6){
+		if(score == 39 && speed == 6){
 			speed -= 3;
 			clearInterval(interval);
 			interval = setInterval(updateGameArea, speed);
 		}
-		if(score == 50 && speed == 3){
+		if(score == 49 && speed == 3){
 			speed -= 2;
 			clearInterval(interval);
 			interval = setInterval(updateGameArea, speed);
@@ -274,21 +274,27 @@ function output(){
 	if(score == 55){
 		stop();
 	}
-	if(speed==20){
+	if(speed == 15){
 		temp = 10;
 	}
-	if(speed ==15){
+	if(speed == 12){
 		temp = 20;
 	}
-	if(speed == 10){
+	if(speed == 9){
 		temp = 30;
 	}
-	if(speed == 5){
+	if(speed == 6){
 		temp = 40;
+	}
+	if(speed == 3){
+		temp = 50;
+	}
+	if(speed == 1){
+		temp = "Max";
 	}
 	count = score;
 	if(level==2){
-		count += 825;
+		//count += 825;
 	}
 	document.getElementById("score").innerHTML = "Score: " + (count*15);
 	document.getElementById("blocksLeft").innerHTML = "Blocks Left: " + (55 - score);
