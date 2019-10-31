@@ -54,7 +54,7 @@ function init(){
 	speed = 20;
 	speedY = -1;
 	speedX = 1;
-
+	
 	if(level == 1){
 		count = 0;
 		levelOne();
@@ -62,10 +62,12 @@ function init(){
 		levelTwo();
 	}else if(level == 3){
 		levelThree();
-	}else if (level == 4){
+	}else if(level == 4){
 		levelFour();
+	}else if(level == 5){
+		levelFive();
 	}
-	
+
 	ball = new object("black", (mouseX+50), 342, 7, 7);
 	board = new gameBoard();
 
@@ -282,8 +284,10 @@ function stop(){
 			level = 2;
 		}else if(level == 2){
 			level = 3;
-		}else if (level == 3){
+		}else if(level == 3){
 			level = 4;
+		}else if(level == 4){
+			level = 5;
 		}
 		alert("You Win!");
 	}else{
@@ -501,6 +505,55 @@ function levelFour(){
 		}else if(i > 43 && i <=55){
 			xWall[i] = tempX;
 			yWall[i] = 190;
+			tempX += 53;
+		}
+	}
+}
+
+function levelFive(){
+	var tempX = 10;
+	brickH = 50;
+	brickW = 49;
+	color1 = "Orange";
+	color2 = "DarkOrange";
+	color3 = "Coral";
+	color4 = "Tomato";
+	color5 = "OrangeRed";
+	hits = 1;
+	speed = 15;
+
+	for(var i = 0; i < xWall.length; i++){
+		if(i >=0 && i <= 10){
+			xWall[i] = tempX;
+			yWall[i] = 20;
+			tempX += 53;
+			if(i == 10){
+				tempX = 10;
+			}
+		}else if(i > 10 && i <=21){
+			xWall[i] = tempX;
+			yWall[i] = 72;
+			tempX += 53;
+			if(i == 21){
+				tempX = 10;
+			}
+		}else if(i > 21 && i <=32){
+			xWall[i] = tempX;
+			yWall[i] = 124;
+			tempX += 53;
+			if(i == 32){
+				tempX = 10;
+			}
+		}else if(i > 32 && i <=43){
+			xWall[i] = tempX;
+			yWall[i] = 176;
+			tempX += 53;
+			if(i == 43){
+				tempX = 10;
+			}
+		}else if(i > 43 && i <=55){
+			xWall[i] = tempX;
+			yWall[i] = 228;
 			tempX += 53;
 		}
 	}
