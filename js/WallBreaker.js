@@ -30,6 +30,7 @@ var brickW;
 var brickH;
 var impact = new Array(55);
 //var sound;
+var sound = document.getElementById("music");
 
 var board;
 var mouseX = 100;
@@ -50,7 +51,7 @@ function init(){
 
 	canvas.width = 600;
 	canvas.height = 400;
-	
+
 	speed = 20;
 	speedY = -1;
 	speedX = 1;
@@ -113,6 +114,11 @@ function playing(){
 
 function gameBoard(){
 	this.update = function(){
+
+		if (document.getElementById("musicCheck").checked) {
+			//sound = document.getElementById("music");
+			sound.play();
+		}
 		c.fillStyle = "black";
 		if(x <= (mouseX+100) && (x+7) >=mouseX && (y+7) >= 350 && y <= 355){
 			if((y+7) == 350){
@@ -241,9 +247,9 @@ function clear(){
 }
 
 function output(){
-	if (document.getElementById("musicCheck").checked){
-		//soundEffects();		
-	}
+	/*if (document.getElementById("musicCheck").checked){
+		soundEffects();		
+	}*/
 	diff();
 	
 	score = impact.filter(function(value){
@@ -277,7 +283,9 @@ function output(){
 
 function stop(){
 	clearInterval(interval);
-	//checkWin();
+	sound.pause();
+	sound.currentTime = 0;
+	document.getElementById("musicCheck").checked = false;
 	if(score==55){
 		//count = score;
 		winnerSound();
@@ -572,13 +580,13 @@ function loserSound(){
     var x = document.getElementById("loser");
     x.play();
 }
-/*
-checkbox.change(function(event) {
-    var checkbox1 = event.target;
-    //sound = document.getElementById("soundEffect");
 
-    if (checkbox1.checked) {
-        sound = document.getElementById("soundEffect");
+/*checkbox.change(function(event) {
+    //var checkbox = event.target;
+    var sound = document.getElementById("music");
+
+    if (document.getElementById("musicCheck").checked) {
+        sound.play();
     } else {
         sound.src = "";
     }
