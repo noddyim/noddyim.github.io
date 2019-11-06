@@ -3,20 +3,21 @@ const c = canvas.getContext('2d');
 
 var snakeHead;
 var apples;
-var appleXray = new Array(51);
-var appleYray = new Array(51);
-var bodyRay = new Array(51);
-var bodypart = new Array(51);
-var bodyXray = new Array(51);
-var bodyYray = new Array(51);
-var lastYray = new Array(7000);
-var lastXray = new Array(7000);
+var appleXray = new Array(1001);
+var appleYray = new Array(1001);
+var bodyRay = new Array(1001);
+var bodypart = new Array(1001);
+var bodyXray = new Array(1001);
+var bodyYray = new Array(1001);
+var lastYray = new Array(10000);
+var lastXray = new Array(10000);
 var temp;
 var count = 0;
 var bodycount = 0;
 var appleIndex = 0;
 var speed = 20;
-var regen = 9000;
+var score;
+var regen = 7000;
 var speedX = 0;
 var speedY = 0;
 var x = 200;
@@ -72,6 +73,8 @@ function output(){
     return value === true;
 	}).length
 
+	//bodycount = bodycount + 5;
+
 	if(bodycount == 10 && speed == 20 && regen == 7000){
 			speed -= 4;
 			regen -= 1000;
@@ -82,7 +85,7 @@ function output(){
 	}
 	document.getElementById("apples").innerHTML = "Apples eaten: "+bodycount;
 	document.getElementById("score").innerHTML = "Score: "+(bodycount *35);
-	document.getElementById("speed").innerHTML = "Speed: "+speed+ " (doesnt change yet).";
+	document.getElementById("speed").innerHTML = "Speed: "+speed;
 }
 function body(){
 	this.updatebody = function(i){
@@ -112,12 +115,12 @@ function body(){
 
 function createbody(){
 
-	for(var i = 0; i < 51; i++){
+	for(var i = 0; i < 1001; i++){
 		bodyXray[i] = -50;
 		bodyYray[i] = -50;
 	}
 
-	for(var i = 0; i < 51; i++){
+	for(var i = 0; i < 1001; i++){
 		bodyRay[i] = false;
 		bodypart[i] = new body();
 	}
@@ -126,7 +129,7 @@ function createbody(){
 function clear(){
 	c.clearRect(0, 0, canvas.width, canvas.height);
 	//paint apple
-	for(var i = 0; i < 51; i++){
+	for(var i = 0; i < 1001; i++){
 		c.fillStyle = "red";
 		c.fillRect(appleXray[i], appleYray[i], w, h);
 	}
@@ -160,7 +163,7 @@ function updateBackyard() {
 		bodyXray[i] = lastXray[temp];//x+(i*10);
 		bodyYray[i] = lastYray[temp];//y+(i*10);
 	}
-	for(var i = 0; i < 51; i++){
+	for(var i = 0; i < 1001; i++){
 		bodypart[i].updatebody(i);
 	}
 	
