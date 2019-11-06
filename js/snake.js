@@ -72,6 +72,14 @@ function output(){
     return value === true;
 	}).length
 
+	if(bodycount == 10 && speed == 20 && regen == 7000){
+			speed -= 4;
+			regen -= 1000;
+			clearInterval(interval);
+			clearInterval(appleInterval);
+			interval = setInterval(updateBackyard, speed);
+			appleInterval = setInterval(updateApple, regen);
+	}
 	document.getElementById("apples").innerHTML = "Apples eaten: "+bodycount;
 	document.getElementById("score").innerHTML = "Score: "+(bodycount *35);
 	document.getElementById("speed").innerHTML = "Speed: "+speed+ " (doesnt change yet).";
@@ -104,12 +112,12 @@ function body(){
 
 function createbody(){
 
-	for(var i = 0; i < 30; i++){
+	for(var i = 0; i < 51; i++){
 		bodyXray[i] = -50;
 		bodyYray[i] = -50;
 	}
 
-	for(var i = 0; i < 30; i++){
+	for(var i = 0; i < 51; i++){
 		bodyRay[i] = false;
 		bodypart[i] = new body();
 	}
@@ -152,7 +160,7 @@ function updateBackyard() {
 		bodyXray[i] = lastXray[temp];//x+(i*10);
 		bodyYray[i] = lastYray[temp];//y+(i*10);
 	}
-	for(var i = 0; i < 30; i++){
+	for(var i = 0; i < 51; i++){
 		bodypart[i].updatebody(i);
 	}
 	
