@@ -40,10 +40,8 @@
   <canvas width="600" height="400" style="background-color: greenyellow"></canvas>
   <div style="float: left">
     <p style="color: red; font-size: 15px;">
-      Snake Under Construction</p>    
-    <p id="score" style="color: red; font-size: 15px;"></p>
-    <p id="apples" style="color: red; font-size: 15px;"></p>
-    <p id="speed" style="color: red; font-size: 15px;"></p>
+      Snake Under Construction</p>
+    <input type="checkbox" id="musicCheck">Music
     <p style="color: red; font-size: 15px;">
       A = Left.<br>
       S = Down.<br>
@@ -51,8 +49,15 @@
       W = Up.<br>
       Green square is the snake.<br>
       Red squares are the apples.<br>
-      Enjoy!</p>
+      Enjoy!</p>      
+    <p id="score" style="color: red; font-size: 15px;"></p>
+    <p id="apples" style="color: red; font-size: 15px;"></p>
+    <p id="speed" style="color: red; font-size: 15px;"></p>
   </div>
 </body>
+<audio id="music">
+    <source src="audio/snakemusic.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 <script src="js/snake.js"></script>
 </html>
