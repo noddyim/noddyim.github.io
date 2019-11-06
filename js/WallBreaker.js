@@ -294,7 +294,13 @@ function output(){
 	}
 	count = score;
 	if(level==2){
-		//count += 825;
+		count += 55;
+	}else if(level==3){
+		count += 110;
+	}else if(level==4){
+		count += 165;
+	}else if(level==5){
+		count += 220;
 	}
 	document.getElementById("score").innerHTML = "Score: " + (count*15);
 	document.getElementById("blocksLeft").innerHTML = "Blocks Left: " + (55 - score);
