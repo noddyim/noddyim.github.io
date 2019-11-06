@@ -60,20 +60,37 @@ function snake(){
 		c.fillRect(x, y, w, h);
 	}
 }
+/*
 function apple(){
 	appleXray[appleIndex] = appleX;
 	appleYray[appleIndex] = appleY;
+	
 	//check if apple is where snake is
 	this.update = function(){
-		c.fillStyle = "red";
-		c.fillRect(appleX, appleY, w, h);
+		alert("appleindex-1 % 10"+((appleIndex-1)%10));
+		if((appleIndex-1) % 10 == 0 && (appleIndex-1) > 1){
+			alert("appleindex-1 % 10"+((appleIndex-1)%10));
+			c.fillStyle = "#8B0000";
+			c.fillRect(appleX, appleY, w, h);
+		}else{
+			c.fillStyle = "#FF0000";
+			c.fillRect(appleX, appleY, w, h);
+		}
 	}
-}
+}*/
 function output(){
+	if(bodycount % 10 == 0 && bodycount > 1){
+		bodyRay[bodycount]=true;
+		bodyRay[bodycount+1]=true;
+		bodyRay[bodycount+2]=true;
+		bodyRay[bodycount+3]=true;
+		appleIndex += 3;
+		//alert("bodycount:"+bodycount+" appleindex:"+appleIndex);	
+	}
 	bodycount = bodyRay.filter(function(value){
     return value === true;
 	}).length
-
+	//alert("bodycount:"+bodycount+" appleindex:"+appleIndex);
 	if(bodycount == 10 && speed == 20 && regen == 7000){
 			speed -= 4;
 			regen -= 1000;
@@ -83,27 +100,45 @@ function output(){
 			appleInterval = setInterval(updateApple, regen);
 	}else if(bodycount == 15 && speed == 16 && regen == 6000){
 			speed -= 4;
-			regen -= 1000;
+			regen -= 500;
 			clearInterval(interval);
 			clearInterval(appleInterval);
 			interval = setInterval(updateBackyard, speed);
 			appleInterval = setInterval(updateApple, regen);
-	}else if(bodycount == 20 && speed == 12 && regen == 5000){
+	}else if(bodycount == 20 && speed == 12 && regen == 5500){
 			speed -= 4;
-			regen -= 1000;
+			regen -= 500;
 			clearInterval(interval);
 			clearInterval(appleInterval);
 			interval = setInterval(updateBackyard, speed);
 			appleInterval = setInterval(updateApple, regen);
-	}else if(bodycount == 25 && speed == 8 && regen == 4000){
+	}else if(bodycount == 25 && speed == 8 && regen == 5000){
 			speed -= 4;
-			regen -= 1000;
+			regen -= 500;
 			clearInterval(interval);
 			clearInterval(appleInterval);
 			interval = setInterval(updateBackyard, speed);
 			appleInterval = setInterval(updateApple, regen);
+	}else if(bodycount == 30 && speed == 4 && regen == 4500){
+			speed -= 1;
+			regen -= 500;
+			clearInterval(interval);
+			clearInterval(appleInterval);
+			interval = setInterval(updateBackyard, speed);
+			appleInterval = setInterval(updateApple, regen);
+	}else if(bodycount == 35 && speed == 3 && regen == 4000){
+			speed -= 1;
+			regen -= 500;
+			clearInterval(interval);
+			clearInterval(appleInterval);
+			interval = setInterval(updateBackyard, speed);
+			appleInterval = setInterval(updateApple, regen);
+	}else if(bodycount == 40 && speed == 2 && regen == 3500){
+			speed -= 1;
+			clearInterval(interval);
+			interval = setInterval(updateBackyard, speed);
 	}
-	if(speed ==20){
+	if(speed == 20){
 	score = 10;
 	}else if(speed == 16){
 		score = 20;
@@ -112,6 +147,12 @@ function output(){
 	}else if(speed == 8){
 		score = 40;
 	}else if(speed == 4){
+		score = 50;
+	}else if(speed == 3){
+		score = 60;
+	}else if(speed == 2){
+		score = 70;
+	}else if(speed == 1){
 		score = "MAX";
 	}
 	document.getElementById("apples").innerHTML = "Apples eaten: "+bodycount;
@@ -134,7 +175,7 @@ function body(){
 		//give array true to increase bodycount
 		bodyRay[i] = true;
 		//get apples eaten
-		output();
+		output();		
 		}else if(!bodyRay[i]){
 			c.fillStyle = "limegreen";
 			c.fillRect(bodyXray[i], bodyYray[i], 10, 10);
@@ -169,8 +210,16 @@ function clear(){
 	c.clearRect(0, 0, canvas.width, canvas.height);
 	//paint apple
 	for(var i = 0; i < 1001; i++){
-		c.fillStyle = "red";
-		c.fillRect(appleXray[i], appleYray[i], w, h);
+		
+		if(bodycount % 10 == 0 && bodycount > 1){
+			//alert("appleindex:"+appleIndex+" bodycount:"+bodycount);	
+			//appleIndex +=3;
+			c.fillStyle = "darkred";
+			c.fillRect(appleXray[i], appleYray[i], w, h);
+		}else{
+			c.fillStyle = "red";
+			c.fillRect(appleXray[i], appleYray[i], w, h);
+		}
 	}
 	lastXray[count] = x;
 	lastYray[count] = y;
@@ -213,7 +262,7 @@ function updateBackyard() {
 function updateApple(){
 	appleX = Math.floor(Math.random() * 581);
 	appleY = Math.floor(Math.random() * 281);
-	
+	//need to stop apples from showing up in same spot
 	while(appleX % 10 !==0){
 		appleX = Math.floor(Math.random() * 581);
 	}
@@ -231,7 +280,7 @@ function updateApple(){
 		}
 	}
 	appleIndex++;
-	//need to stop apples from showing up in same spot
+
 	appleXray[appleIndex] = appleX;
 	appleYray[appleIndex] = appleY;
 }
