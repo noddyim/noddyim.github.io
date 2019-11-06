@@ -150,10 +150,10 @@ function updateBackyard() {
 	//document.getElementById("yvalue").innerHTML = "Y value: "+y;
 	x = x + speedX;
 	y = y + speedY;
-	if(x > 590 || x < 1){
+	if(x > 591 || x < 0){
 		stop();
 	}
-	if(y < 1 || y > 390){
+	if(y < 0 || y > 391){
 		stop();
 	}
 	snakeHead.update();
