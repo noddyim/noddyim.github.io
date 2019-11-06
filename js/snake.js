@@ -121,6 +121,7 @@ function output(){
 function body(){
 	this.updatebody = function(i){
 		if(document.getElementById("musicCheck").checked){
+			sound.volume = 0.5;
 			sound.play();
 		}else if(!document.getElementById("musicCheck").checked){
 			sound.pause();
