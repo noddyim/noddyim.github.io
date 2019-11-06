@@ -72,9 +72,9 @@ function output(){
     return value === true;
 	}).length
 
-	document.getElementById("score").innerHTML = "Apples eaten: "+bodycount;
-	
-	//alert("lastx:"+lastXray+" bxray:"+bodyXray+" lasty:"+lastYray+" byray:"+bodyYray);
+	document.getElementById("apples").innerHTML = "Apples eaten: "+bodycount;
+	document.getElementById("score").innerHTML = "Score: "+(bodycount *35);
+	document.getElementById("speed").innerHTML = "Speed: "+speed+ " (doesnt change yet).";
 }
 function body(){
 	this.updatebody = function(i){
@@ -101,16 +101,6 @@ function body(){
 		}
 	}
 }
-/*
-function paintbody(){
-	if(bodycount==1){
-		bodyXray[0]= x+21;
-		bodyYray[0]= y+21;
-	}else if(bodycount==2){
-		bodyXray[1]= x+42;
-		bodyYray[1]= y+42;
-	}
-}*/
 
 function createbody(){
 
@@ -146,8 +136,6 @@ function stop(){
 }
 function updateBackyard() {
 	clear();
-	//document.getElementById("xvalue").innerHTML = "X value: "+x;
-	//document.getElementById("yvalue").innerHTML = "Y value: "+y;
 	x = x + speedX;
 	y = y + speedY;
 	if(x > 591 || x < 0){
@@ -181,7 +169,7 @@ function updateApple(){
 	}
 
 	appleIndex++;
-	//alert("applex:"+appleX+" appley:"+appleY);
+	//need to stop apples from showing up in same spot
 	appleXray[appleIndex] = appleX;
 	appleYray[appleIndex] = appleY;
 }
