@@ -9,8 +9,8 @@ var bodyRay = new Array(1001);
 var bodypart = new Array(1001);
 var bodyXray = new Array(1001);
 var bodyYray = new Array(1001);
-var lastYray = new Array(10000);
-var lastXray = new Array(10000);
+var lastYray = new Array(100000);
+var lastXray = new Array(100000);
 var temp;
 var count = 0;
 var bodycount = 0;
@@ -88,14 +88,14 @@ function output(){
 			clearInterval(appleInterval);
 			interval = setInterval(updateBackyard, speed);
 			appleInterval = setInterval(updateApple, regen);
-	}else if(bodycount == 20 && speed == 12 && regen == 6000){
+	}else if(bodycount == 20 && speed == 12 && regen == 5000){
 			speed -= 4;
 			regen -= 1000;
 			clearInterval(interval);
 			clearInterval(appleInterval);
 			interval = setInterval(updateBackyard, speed);
 			appleInterval = setInterval(updateApple, regen);
-	}else if(bodycount == 25 && speed == 8 && regen == 5000){
+	}else if(bodycount == 25 && speed == 8 && regen == 4000){
 			speed -= 4;
 			regen -= 1000;
 			clearInterval(interval);
@@ -175,7 +175,7 @@ function clear(){
 	lastXray[count] = x;
 	lastYray[count] = y;
 	count++;
-	if(count==7000){
+	if(count==100000){
 		count = 0;
 	}
 }
@@ -217,10 +217,19 @@ function updateApple(){
 	while(appleX % 10 !==0){
 		appleX = Math.floor(Math.random() * 581);
 	}
+	for(var i = 0; i < bodycount; i++){
+		if(bodyXray[i]==appleX){
+			updateApple();
+		}
+	}
 	while(appleY % 10 !==0){
 		appleY = Math.floor(Math.random() * 281);
 	}
-
+	for(var i = 0; i < bodycount; i++){
+		if(bodyYray[i]==appleY){
+			updateApple();
+		}
+	}
 	appleIndex++;
 	//need to stop apples from showing up in same spot
 	appleXray[appleIndex] = appleX;
