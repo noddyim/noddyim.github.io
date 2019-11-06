@@ -73,8 +73,6 @@ function output(){
     return value === true;
 	}).length
 
-	//bodycount = bodycount + 5;
-
 	if(bodycount == 10 && speed == 20 && regen == 7000){
 			speed -= 4;
 			regen -= 1000;
@@ -82,10 +80,42 @@ function output(){
 			clearInterval(appleInterval);
 			interval = setInterval(updateBackyard, speed);
 			appleInterval = setInterval(updateApple, regen);
+	}else if(bodycount == 15 && speed == 16 && regen == 6000){
+			speed -= 4;
+			regen -= 1000;
+			clearInterval(interval);
+			clearInterval(appleInterval);
+			interval = setInterval(updateBackyard, speed);
+			appleInterval = setInterval(updateApple, regen);
+	}else if(bodycount == 20 && speed == 12 && regen == 6000){
+			speed -= 4;
+			regen -= 1000;
+			clearInterval(interval);
+			clearInterval(appleInterval);
+			interval = setInterval(updateBackyard, speed);
+			appleInterval = setInterval(updateApple, regen);
+	}else if(bodycount == 25 && speed == 8 && regen == 5000){
+			speed -= 4;
+			regen -= 1000;
+			clearInterval(interval);
+			clearInterval(appleInterval);
+			interval = setInterval(updateBackyard, speed);
+			appleInterval = setInterval(updateApple, regen);
+	}
+	if(speed ==20){
+	score = 10;
+	}else if(speed == 16){
+		score = 20;
+	}else if(speed == 12){
+		score = 30;
+	}else if(speed == 8){
+		score = 40;
+	}else if(speed == 4){
+		score = "MAX";
 	}
 	document.getElementById("apples").innerHTML = "Apples eaten: "+bodycount;
 	document.getElementById("score").innerHTML = "Score: "+(bodycount *35);
-	document.getElementById("speed").innerHTML = "Speed: "+speed;
+	document.getElementById("speed").innerHTML = "Speed: "+score;
 }
 function body(){
 	this.updatebody = function(i){
