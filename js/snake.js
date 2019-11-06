@@ -35,6 +35,7 @@ var moveleft = false;
 var moveright = false;
 var moveup = false;
 var moving = false;
+var sound = document.getElementById("music");
 
 document.addEventListener("keypress", moveSnake, false);
 
@@ -119,6 +120,12 @@ function output(){
 }
 function body(){
 	this.updatebody = function(i){
+		if(document.getElementById("musicCheck").checked){
+			sound.play();
+		}else if(!document.getElementById("musicCheck").checked){
+			sound.pause();
+			sound.currentTime = 0;
+		}
 		if(x <= (appleXray[i]+9) && (x+9) >=appleXray[i] && (y+9) >= appleYray[i] && y <= (appleYray[i]+9)){
 		//alert("collision");
 		appleXray[i] = -50;
@@ -157,6 +164,7 @@ function createbody(){
 }
 
 function clear(){
+	
 	c.clearRect(0, 0, canvas.width, canvas.height);
 	//paint apple
 	for(var i = 0; i < 1001; i++){
@@ -172,6 +180,9 @@ function clear(){
 }
 function stop(){
 	alert("Game Over");
+	sound.pause();
+	sound.currentTime = 0;
+	document.getElementById("musicCheck").checked = false;
 	clearInterval(interval);
 	clearInterval(appleInterval);
 }
