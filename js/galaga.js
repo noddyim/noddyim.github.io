@@ -25,7 +25,7 @@ var regen = 3000;
 
 document.addEventListener("keypress", moveShip, false);
 //document.addEventListener("keydown", moveShips, false);
-
+var sound = document.getElementById("music");
 document.body.onload = init();
 
 function init(){
@@ -64,6 +64,13 @@ function drawBullet(){
 
 function drawAlien(){
 	this.update = function(i){
+		if(document.getElementById("musicCheck").checked){
+			sound.volume = 0.5;
+			sound.play();
+		}else if(!document.getElementById("musicCheck").checked){
+			sound.pause();
+			sound.currentTime = 0;
+		}
 		//alert("draw alien i:"+i+" ax:"+alienX[i]+" ay:"+alienY[i]);
 		//c.fillStyle = "yellow";
 		//c.fillRect = (alienX[i], alienY[i], 20, 20);
