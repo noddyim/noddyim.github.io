@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Noddy's Page | Snake</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/galaga.css">
+    <link rel="icon" href="images/rebel.ico">
+	  <link rel="shortcut icon" href="images/rebel.ico">
+</head>
+<header style="display: block;position: relative;z-index: 999; margin-bottom: 46px;">
+  <div style="margin-left: auto; margin-right: auto; width: 960px;">
+    <div style="width: 940px;">
+      <div style="position: relative; background: #fe8c21; z-index: 999;	padding-left: 20px;	padding-right: 35px;">
+        <nav style="position:relative;padding: 0px 0 0 0;">
+          <ul class="sf-menu">
+            <li class="current"><a href="index.html">Home</a></li>
+            <div class="dropdown">
+              <button class="dropbtn">Games</button>
+                <div class="dropdown-content">
+                  <a href="TTT.html">Tic Tac Toe</a>
+                  <a href="match.html">Matching Game</a>
+                  <a href="WallBreaker.html">Wall Breaker</a>
+				  <a href="snake.html">Snake</a>
+				  <a href="galaga.html">Galaga</a>
+                </div>
+            </div>
+            <li><a href="finances.html">Budget Calculator</a></li>
+            <li><a href="contact.html">About Us</a></li>
+          </ul>
+        </nav>
+      <div style="clear: both; display: block; overflow: hidden; visibility: hidden;  width: 0;  height: 0;"></div>
+      </div>
+    <div style="clear: both; display: block; overflow: hidden; visibility: hidden;  width: 0;  height: 0;"></div>
+    </div>
+  </div>
+  <br>
+</header>
+<body>
+  <canvas width="600" height="400" style="background-color: darkviolet"></canvas>
+  <div style="float: left">
+    <p style="color: red; font-size: 15px;">
+	  <img id="fighter" width="50" height="50" src="images/fighter.png" alt="fighter" style="display: none">
+	  <!--<img id="bulletf" width="50" height="50" src="images/bullet.png" alt="bullet" style="display: none">-->
+	  Galaga <br> Under Construction</p>
+    <input type="checkbox" id="musicCheck">Music
+    <p style="color: red; font-size: 15px;">
+      A = Left.<br>
+	  D = Right.<br>
+	  Spacebar = Fire.<br>
+      Enjoy!</p>      
+    <p id="score" style="color: red; font-size: 15px;"></p>
+    <p id="xval" style="color: red; font-size: 15px;"></p>
+    <p id="speed" style="color: red; font-size: 15px;"></p>
+  </div>
+</body>
+<audio id="music">
+    <source src="audio/axelf.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+<script src="js/galaga.js"></script>
+</html>
