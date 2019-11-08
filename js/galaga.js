@@ -88,7 +88,7 @@ function drawAlien(){
 					//alert("randomx");
 					alienX[i] = Math.floor(Math.random() * 550);
 					while(alienY[i]>=alienY[b] && (alienY[i]+20)<=(alienY[b]+20) && i!==b){
-						alert("randomy");
+						//alert("randomy");
 						alienX[i] = Math.floor(Math.random() * 550);
 						alienY[i] -= 4;
 					}
