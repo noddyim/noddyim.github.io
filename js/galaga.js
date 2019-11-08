@@ -167,11 +167,12 @@ function clear(){
 
 function stop(){
 	alert("Game Over");
-	//sound.pause();
-	//sound.currentTime = 0;
-	//document.getElementById("musicCheck").checked = false;
+	sound.pause();
+	sound.currentTime = 0;
+	document.getElementById("musicCheck").checked = false;
 	clearInterval(interval);
 	clearInterval(alienInterval);
+	init();
 }
 function output(){
 	kCount = killed.filter(function(value){
