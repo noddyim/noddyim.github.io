@@ -18,11 +18,11 @@ var bulletX = new Array(100);
 var bulletY = new Array(100);
 var fired = new Array(100);
 var bCount = 0;
-var alien = new Array(1000);
-var alienX = new Array(1000);
-var alienY = new Array(1000);
+var alien = new Array(100);
+var alienX = new Array(100);
+var alienY = new Array(100);
 var alienInterval;
-var regen = 2000;
+var regen = 1000;
 
 document.addEventListener("keypress", moveShip, false);
 //document.addEventListener("keydown", moveShips, false);
@@ -44,9 +44,10 @@ function init(){
 	}
 	for(var i = 0; i < alien.length; i++){
 		alien[i] = new drawAlien();
-		alienX[i] = Math.floor(Math.random() * 550);
-		alienY[i] = -4;
+		//alienX[i] = (Math.floor(Math.random() * 545))+5;
+		//alienY[i] = -24;
 	}
+	levelOne();
 	interval = setInterval(updateSpace, speed);
 	alienInterval = setInterval(updateAlien, regen);
 }
@@ -84,15 +85,17 @@ function drawAlien(){
 				bulletY[b] = -50;
 				killed[i] = true;
 			}else{
-				while(alienX[i]>=alienX[b] && (alienX[i]+20)<=(alienX[b]+20) && i!==b){
-					//alert("randomx");
-					alienX[i] = Math.floor(Math.random() * 550);
-					while(alienY[i]>=alienY[b] && (alienY[i]+20)<=(alienY[b]+20) && i!==b){
+				//while(alienX[i]>=alienX[b] && (alienX[i]+20)<=(alienX[b]+20) && i!==b){ 
+				//&& alienY[i]>=alienY[b] && (alienY[i]+20)<=(alienY[b]+20)){
+					//alert("random");
+					//alienX[i] = (Math.floor(Math.random() * 545))+5;
+					/*while(alienY[i]>=alienY[b] && (alienY[i]+20)<=(alienY[b]+20)){ //&& i!==b){
 						//alert("randomy");
-						alienX[i] = Math.floor(Math.random() * 550);
-						alienY[i] -= 4;
-					}
-				}
+						alienX[i] = (Math.floor(Math.random() * 545))+5;
+						//alienY[i] -= 4;
+					}*/
+					//alienX[i] = (Math.floor(Math.random() * 545))+5;
+				//}
 				c.drawImage(alienimg, alienX[i], alienY[i], 20, 20);
 			}
 		}
@@ -119,17 +122,36 @@ function moveShip(){
 		bulletX[bCount] = x +24;
 		bulletY[bCount] = 355;
 		bCount++;
+		//alert("alienx:"+alienX);
+		//alert("alieny:"+alienY);
 	}
 }
 
 function updateAlien(){
 	aCount++;
-	for(var i = 0; i < aCount; i++){
-		alienY[i] += 4;
+	for(var i = 0; i < alien.length; i++){
+		alienY[i] += 10;
 		if(alienY[i]>355){
 			stop();
 		}
 	}
+	/*for(var i = 23; i <= 45; i++){
+		alienY[i] += 10;
+	}
+	for(var i = 46; i <= 66; i++){
+		alienY[i] += 10;
+	}
+	for(var i = 67; i <= 93; i++){
+		alienY[i] += 10;
+	}*/
+
+	/*aCount++;
+	for(var i = 0; i < aCount; i++){
+		alienY[i] += 8;
+		if(alienY[i]>355){
+			stop();
+		}
+	}*/
 	//alien[aCount].update(aCount);
 	/*for(var i = 0; i < aCount; i++){
 		alienY[i] += 4;
@@ -157,8 +179,8 @@ function output(){
 	}).length
 
 	document.getElementById("score").innerHTML = "Aliens Killed:"+ kCount;
-	//document.getElementById("xval").innerHTML = "alien y0:"+alienY[0];
-	//document.getElementById("speed").innerHTML = "alien y1: "+alienY[1];
+	//document.getElementById("xval").innerHTML = "alien x:"+alienY;
+	//document.getElementById("speed").innerHTML = "alien y: "+alienY;
 }
 
 function updateSpace() {
@@ -190,9 +212,48 @@ function updateSpace() {
 	/*for(var i = 0; i<alien.length; i++){
 		alien[i].update(aCount);
 	}*/
-	for(var i = 0; i < aCount; i++){
+	//for(var i = 0; i < aCount; i++){
+	for(var i = 0; i < alien.length; i++){
 		//alienY[i] += 4;
 		//alert("alien update");
 		alien[i].update(i);
 	}
+}
+
+function levelOne(){
+	var tempX = 15;
+
+	for(var i = 0; i < alien.length; i++){
+		if(i >=0 && i <= 22){
+			alienX[i] = tempX;
+			alienY[i] = -30;
+			tempX += 25;
+			if(i == 22){
+				tempX = 15;
+			}
+		}else if(i > 22 && i <=45){
+			alienX[i] = tempX;
+			alienY[i] = -60;
+			tempX += 25;
+			if(i == 45){
+				tempX = 15;
+			}
+		}else if(i > 45 && i <=68){
+			alienX[i] = tempX;
+			alienY[i] = -90;
+			tempX += 25;
+			if(i == 68){
+				tempX = 15;
+			}
+		}else if(i > 68 && i <=91){
+			alienX[i] = tempX;
+			alienY[i] = -120;
+			tempX += 25;
+			if(i == 91){
+				tempX = 15;
+			}
+		}
+	}
+	//alert("alienx:"+alienX);
+	//alert("alieny:"+alienY);
 }
