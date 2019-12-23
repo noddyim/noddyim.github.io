@@ -14,9 +14,7 @@ function loadDoc() {
   var xhttp = new XMLHttpRequest();
   
   xhttp.onreadystatechange = function() {
-	  alert("readystate(4): "+this.readyState+" status(200): "+this.status);
     if (this.readyState == 4 && this.status == 200) {
-    	alert("if statement");
       document.getElementById("demo").innerHTML = this.responseText;
     }
   };
