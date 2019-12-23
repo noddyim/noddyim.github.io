@@ -1,6 +1,4 @@
-<%@ page import="java.sql.*"%>
-
- 
+<%@ page import="java.sql.*"%> 
 
 <%
 String name = request.getParameter("rname");
@@ -10,7 +8,7 @@ String password = request.getParameter("rpass");
 String passwordConfirm = request.getParameter("rpassConfirm");
 if(password.equals(passwordConfirm)) {
     try{
-        Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "SYSTEM", "Joshua2019");
+        Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1522:xe", "SYSTEM", "Joshua2019");
         PreparedStatement ps = conn.prepareStatement("INSERT INTO user VALUES (?,?,?,?)");
         ps.setString(1,name);
         ps.setString(2,email);
