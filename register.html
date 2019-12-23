@@ -21,40 +21,32 @@
 <header>
 </header>
 <div align="center">
-<form action="register.jsp" method="post">
-    <table style="text-align:center">
-        <tr>
-            <th colspan="2" style="padding:20px">Please Fill Out Information</th>
-        </tr>
-        <tr>
-            <td>Name</td>
-            <td><input type="text" name="rname"></td>
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td><input type="email" name="remail"></td>
-        </tr>
-        <tr>
-            <td>Gender</td>
-            <td>Male<input type="radio" name="rgender" value="Male">
-            Female<input type="radio" name="rgender" value="Female"></td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td><input type="password" name="rpass"></td>
-        </tr>
-        <tr>
-            <td>Confirm Password</td>
-            <td><input type="password" name="rpassConfirm"></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td style="padding:20px"><input type="reset" value="Reset">
-            &nbsp<input type="submit" value="Register"></td>
-        </tr>
-    </table>
-</form>
+	<form onSubmit="WriteToFile(this)">
+		<label>Type your first name:</label>
+		<input type="text" name="FirstName" id="firstName" size="20">
+		 
+		<label>Type your last name: </label>
+		<input type="text" name="LastName" id="lastName" size="20">
+		 
+		<input type="submit" value="submit">
+	</form>
 </div>
+<script>
+function WriteToFile(passForm) {
+ 
+    set fso = CreateObject("Scripting.FileSystemObject"); 
+    set s   = fso.CreateTextFile("demo.txt", True);
+ 
+    var firstName = document.getElementById('FirstName');
+    var lastName  = document.getElementById('lastName');
+ 
+    s.writeline("First Name :" + FirstName);
+    s.writeline("Last Name :" + lastName);
+ 
+    s.writeline("-----------------------------");
+    s.Close();
+ }
+</script>
 <footer>
   <div class="container_12">
     <div class="grid_12">
