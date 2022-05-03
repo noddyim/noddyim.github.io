@@ -1,5 +1,5 @@
 var myCity = new google.maps.Circle({
-                                    center:amsterdam,
+                                    center:Austin,
                                     radius:20000,
                                     strokeColor:"#0000FF",
                                     strokeOpacity:0.8,
