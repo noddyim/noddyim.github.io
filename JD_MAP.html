@@ -6,6 +6,13 @@
     <link rel="icon" href="images/rebel.ico">
     <link rel="shortcut icon" href="images/rebel.ico">
     <link rel="stylesheet" href="css/style.css">
+    <script type='text/javascript' src='http://code.jquery.com/jquery-1.11.1.min.js'></script>
+    <script type="text/javascript" src="mapdata.js"></script>
+<script type="text/javascript" src="countymap.js"></script>
+<script type="text/javascript" src="zipsearch.js"></script>
+<script>
+  simplemaps_zipsearch.map=simplemaps_countymap; // tells the script which map to work with
+</script>
   </head>
 <body>
 <header>
@@ -45,6 +52,7 @@
       </div>
     </div>
   <div class="clear"></div>
+  <div id="map"></div>
 <footer>
   <div class="container_12">
     <div class="grid_12">
