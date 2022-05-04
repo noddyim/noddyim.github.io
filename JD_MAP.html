@@ -8,10 +8,10 @@
     html,
     body,
     #viewDiv {
-      padding: 0;
+      padding: 20px;
       margin: 0;
-      height: 75%;
-      width: 75%;
+      height: 85%;
+      width: 85%;
     }
   </style>
 
@@ -22,8 +22,9 @@
     require([
      "esri/config",
       "esri/Map",
-      "esri/views/MapView"
-    ], function (esriConfig,Map, MapView) {
+      "esri/views/MapView",
+      "esri/layers/FeatureLayer"
+    ], function(esriConfig,Map, MapView, FeatureLayer) {
 
       esriConfig.apiKey = "AAPKd01249fc47b94ebf950169ad7fac07e2KhOYo3MgaiRiyQ3ohgiLPZubbRFyt5_c9OEViEhWKubugjIWUScFhLN9iEIYri9w";
       const map = new Map({
@@ -39,6 +40,20 @@
           snapToZoom: false
         }
       });
+      
+      //Trailheads feature layer (points)
+      const trailheadsLayer = new FeatureLayer({
+        url: "https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trailheads/FeatureServer/0"
+      });
+      
+      map.add(trailheadsLayer);
+      
+      //Trails feature layer (lines)
+      const trailsLayer = new FeatureLayer({
+        url: "https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trails/FeatureServer/0"
+      });
+      
+      map.add(trailsLayer, 0);
 
     });
   </script>
