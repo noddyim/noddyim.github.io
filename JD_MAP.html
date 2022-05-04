@@ -6,6 +6,21 @@
     <link rel="icon" href="images/rebel.ico">
     <link rel="shortcut icon" href="images/rebel.ico">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+#overlay {
+  position: fixed;
+  display: none;
+  width: 10%;
+  height: 10%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+</style>
   </head>
 <body>
 <header>
@@ -45,6 +60,20 @@
       </div>
     </div>
   <div class="clear"></div>
+  <div id="overlay" onclick="off()"></div>
+<div style="padding:20px">
+  <button onclick="on()">Overlay</button>
+</div>
+
+<script>
+function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
+</script>
 <footer>
   <div class="container_12">
     <div class="grid_12">
