@@ -10,8 +10,8 @@
     #viewDiv {
       padding: 20px;
       margin: 0;
-      height: 85%;
-      width: 85%;
+      height: 95%;
+      width: 95%;
     }
   </style>
 
@@ -23,8 +23,10 @@
      "esri/config",
       "esri/Map",
       "esri/views/MapView",
-      "esri/layers/FeatureLayer"
-    ], function(esriConfig,Map, MapView, FeatureLayer) {
+      "esri/Graphic",
+      "esri/layers/GraphicsLayer"
+
+    ], function(esriConfig,Map, MapView, Graphic, GraphicsLayer) {
 
       esriConfig.apiKey = "AAPKd01249fc47b94ebf950169ad7fac07e2KhOYo3MgaiRiyQ3ohgiLPZubbRFyt5_c9OEViEhWKubugjIWUScFhLN9iEIYri9w";
       const map = new Map({
@@ -41,19 +43,36 @@
         }
       });
       
-      //Trailheads feature layer (points)
-      const trailheadsLayer = new FeatureLayer({
-        url: "https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trailheads/FeatureServer/0"
-      });
+      const graphicsLayer = new GraphicsLayer();
+      map.add(graphicsLayer);
       
-      map.add(trailheadsLayer);
+      // Create a polygon geometry
+     const polygon = {
+        type: "polygon",
+        rings: [
+            [-118.818984489994, 34.0137559967283], //Longitude, latitude
+            [-118.806796597377, 34.0215816298725], //Longitude, latitude
+            [-118.791432890735, 34.0163883241613], //Longitude, latitude
+            [-118.79596686535, 34.008564864635],   //Longitude, latitude
+            [-118.808558110679, 34.0035027131376]  //Longitude, latitude
+        ]
+     };
+
+     const simpleFillSymbol = {
+        type: "simple-fill",
+        color: [227, 139, 79, 0.8],  // Orange, opacity 80%
+        outline: {
+            color: [255, 255, 255],
+            width: 1
+        }
+     };
       
-      //Trails feature layer (lines)
-      const trailsLayer = new FeatureLayer({
-        url: "https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trails/FeatureServer/0"
-      });
-      
-      map.add(trailsLayer, 0);
+      const polygonGraphic = new Graphic({
+          geometry: polygon,
+          symbol: simpleFillSymbol,
+
+       });
+       graphicsLayer.add(polygonGraphic);
 
     });
   </script>
