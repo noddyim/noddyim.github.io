@@ -6,22 +6,45 @@
     <link rel="icon" href="images/rebel.ico">
     <link rel="shortcut icon" href="images/rebel.ico">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css">
-    <script src="https://js.arcgis.com/4.23/"></script>
-    <style>
-#overlay {
-  position: relative;
-  display: none;
-  width: 5%;
-  height: 7%;
-  top: 200px;
-  left: 50px;
-  background-color: rgba(0,50,0,0.3);
-  z-index: 2;
-  cursor: pointer;
-}
-</style>
-  </head>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.19/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.19/"></script>
+
+  <script>
+    require([
+     "esri/config",
+      "esri/Map",
+      "esri/views/MapView"
+    ], function (esriConfig,Map, MapView) {
+
+      esriConfig.apiKey = "AAPKd01249fc47b94ebf950169ad7fac07e2KhOYo3MgaiRiyQ3ohgiLPZubbRFyt5_c9OEViEhWKubugjIWUScFhLN9iEIYri9w";
+      const map = new Map({
+        basemap: "arcgis-topographic" // Basemap layer
+      });
+
+      const view = new MapView({
+        map: map,
+        center: [-118.805, 34.027],
+        zoom: 13, // scale: 72223.819286
+        container: "viewDiv",
+        constraints: {
+          snapToZoom: false
+        }
+      });
+
+    });
+  </script>
+
 <body>
 <header>
   <div class="container_12">
@@ -50,31 +73,7 @@
     </div>
   </div>
 </header>
-<div class="grid_6 alpha">
-  <div class="pl1">
-    <h3>Map</h3>
-      <div class="map">
-        <figure class="">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d222335.40863762732!2d-98.65448448609472!3d29.45828014655954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865c58af04d00eaf%3A0x856e13b10a016bc!2sSan%20Antonio%2C%20TX!5e0!3m2!1sen!2sus!4v1651622301660!5m2!1sen!2sus" width="auto" height="auto" style="align-content: center;" allowfullscreen=""></iframe>
-        </figure>
-      </div>
-    </div>
-  <div class="clear"></div>
-  <div id="overlay" onclick="off()"></div>
-<div style="padding:20px">
-  <button onclick="on()">On</button>
-  <button onclick="off()">Off</button>
-</div>
-
-<script>
-function on() {
-  document.getElementById("overlay").style.display = "block";
-}
-
-function off() {
-  document.getElementById("overlay").style.display = "none";
-}
-</script>
+<div id="viewDiv"></div>
 <footer>
   <div class="container_12">
     <div class="grid_12">
