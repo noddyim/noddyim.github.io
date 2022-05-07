@@ -37,7 +37,7 @@
       const view = new MapView({
         map: map,
         center: [-104.9850, 39.7392],
-        zoom: 12, // scale: 72223.819286
+        zoom: 11, // scale: 72223.819286
         container: "viewDiv",
         constraints: {
           snapToZoom: false
@@ -56,7 +56,7 @@
       });
       
       const JDLayer = new FeatureLayer({
-        url: "https://services6.arcgis.com/zLhAckIunxPGv1SW/arcgis/rest/services/jd_zip_codes/FeatureServer/0"
+        url: "https://services6.arcgis.com/zLhAckIunxPGv1SW/arcgis/rest/services/jd_data/FeatureServer/0"
       });
       
       map.add(JDLayer);
