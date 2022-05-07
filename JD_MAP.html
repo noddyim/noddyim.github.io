@@ -35,12 +35,36 @@
         basemap: "arcgis-topographic" // Basemap layer
       });
       
-             
+      layer.renderer = new SimpleRenderer({
+        symbol: {
+          type: "simple-marker",
+          color: [100, 100, 100],
+          outline: {
+            color: [255, 255, 255, 0.7],
+            width: 0.5
+          },
+          size: "10px"
+        }
+      });
+      // generates a new renderer with a scale-dependent
+      // size visual variable to vary icon size by scale
+      locationRendererCreator.createRenderer({
+        layer: layer,
+        view: view,
+        sizeOptimizationEnabled: sizeOptimizationEnabled
+      }).then((rendererResponse) => {
+        // the renderer contains a size variable with stops
+        // mapping icon sizes to scale values
+        layer.renderer = rendererResponse.renderer;
+      }).catch((error) => {
+        console.error(error);
+      });
+      
       //MAP
       const view = new MapView({
         map: map,
         center: [-104.9850, 39.7392],
-        zoom: 7, // scale: 72223.819286
+        zoom: 14, // scale: 72223.819286
         container: "viewDiv",
         constraints: {
           snapToZoom: false
