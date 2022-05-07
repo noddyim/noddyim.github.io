@@ -23,41 +23,13 @@
      "esri/config",
      "esri/Map",
      "esri/views/MapView",
-     "esri/widgets/Search",
-     "esri/layers/FeatureLayer",
-     "esri/renderers/SimpleRenderer",
-     "esri/smartMapping/renderers/location"
+     "esri/widgets/Search"
 
-    ], function(esriConfig,Map, MapView, Search,FeatureLayer,SimpleRenderer,locationRendererCreator) {
+    ], function(esriConfig,Map, MapView, Search) {
 
       esriConfig.apiKey = "AAPKd01249fc47b94ebf950169ad7fac07e2KhOYo3MgaiRiyQ3ohgiLPZubbRFyt5_c9OEViEhWKubugjIWUScFhLN9iEIYri9w";
       const map = new Map({
         basemap: "arcgis-topographic" // Basemap layer
-      });
-      
-      layer.renderer = new SimpleRenderer({
-        symbol: {
-          type: "simple-marker",
-          color: [100, 100, 100],
-          outline: {
-            color: [255, 255, 255, 0.7],
-            width: 0.5
-          },
-          size: "10px"
-        }
-      });
-      // generates a new renderer with a scale-dependent
-      // size visual variable to vary icon size by scale
-      locationRendererCreator.createRenderer({
-        layer: layer,
-        view: view,
-        sizeOptimizationEnabled: sizeOptimizationEnabled
-      }).then((rendererResponse) => {
-        // the renderer contains a size variable with stops
-        // mapping icon sizes to scale values
-        layer.renderer = rendererResponse.renderer;
-      }).catch((error) => {
-        console.error(error);
       });
       
       //MAP
