@@ -50,7 +50,7 @@
         "type": "simple",
         "symbol": {
           "type": "picture-marker",
-          "url": "/images/creep1.png",
+          "url": "https://noddyim.github.io/images/creep1.png",
           "width": "18px",
           "height": "18px"
         }
@@ -94,12 +94,12 @@
       // Define a pop-up for pCiL
       const popup_pCiL = {
         "title": "Average Radon Level",
-        "content": "<b>Zip Code:</b> {ZIP}<br><b>pCi L:</b> {pCiL}<br>"
+        "content": "<b>Zip Code:</b> {ZIP}<br><b>pCi L:</b> {PCIL}<br>"
       }
       
       const pCiL = new FeatureLayer({
         url: "https://services6.arcgis.com/zLhAckIunxPGv1SW/arcgis/rest/services/US_ZIP_LAT_LONG/FeatureServer/0",
-        outFields: ["ZIP","pCiL"],
+        outFields: ["ZIP","PCIL"],
         popupTemplate: popup_pCiL
       });
 
