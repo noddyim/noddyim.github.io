@@ -24,18 +24,37 @@
      "esri/Map",
      "esri/views/MapView",
      "esri/widgets/Search",
-     "esri/layers/FeatureLayer"
+     "esri/Basemap",
+     "esri/layers/VectorTileLayer",
+     "esri/layers/TileLayer",
 
-    ], function(esriConfig,Map, MapView, Search, FeatureLayer) {
+    ], function(esriConfig,Map, MapView, Search, Basemap, VectorTileLayer, TileLayer) {
 
       esriConfig.apiKey = "AAPKd01249fc47b94ebf950169ad7fac07e2KhOYo3MgaiRiyQ3ohgiLPZubbRFyt5_c9OEViEhWKubugjIWUScFhLN9iEIYri9w";
       const map = new Map({
         basemap: "arcgis-topographic" // Basemap layer
       });
       
+      //JD Data Vector
+      const JDvectorTileLayer = new VectorTileLayer({
+        portalItem: {
+          id: "4994376b54b64b67bd7afa579fec28b2" // JD Data
+        },
+        opacity: .75
+      });
+      
+      const basemap = new Basemap({
+        baseLayers: [
+
+          JDvectorTileLayer
+
+        ]
+      });
+      
       //MAP
       const view = new MapView({
         map: map,
+        basemap: basemap,
         center: [-104.9850, 39.7392],
         zoom: 11, // scale: 72223.819286
         container: "viewDiv",
@@ -54,13 +73,7 @@
         position: "top-left",
         index: 2
       });
-      
-      const JDLayer = new FeatureLayer({
-        url: "https://services6.arcgis.com/zLhAckIunxPGv1SW/arcgis/rest/services/jd_data/FeatureServer/0"
-      });
-      
-      map.add(JDLayer);
-      
+            
     });
   </script>
 </head>
