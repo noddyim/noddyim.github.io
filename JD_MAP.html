@@ -23,10 +23,9 @@
      "esri/config",
       "esri/Map",
       "esri/views/MapView",
-      "esri/Graphic",
-      "esri/layers/GraphicsLayer"
+      "esri/widgets/Search"
 
-    ], function(esriConfig,Map, MapView, Graphic, GraphicsLayer) {
+    ], function(esriConfig,Map, MapView, Search) {
 
       esriConfig.apiKey = "AAPKd01249fc47b94ebf950169ad7fac07e2KhOYo3MgaiRiyQ3ohgiLPZubbRFyt5_c9OEViEhWKubugjIWUScFhLN9iEIYri9w";
       const map = new Map({
@@ -43,36 +42,15 @@
         }
       });
       
-      const graphicsLayer = new GraphicsLayer();
-      map.add(graphicsLayer);
-      
-      // Create a polygon geometry
-     const polygon = {
-        type: "polygon",
-        rings: [
-            [-98.818984489994, 29.0137559967283], //Longitude, latitude
-            [-98.806796597377, 29.0215816298725], //Longitude, latitude
-            [-98.791432890735, 29.0163883241613], //Longitude, latitude
-            [-98.79596686535, 29.008564864635],   //Longitude, latitude
-            [-98.808558110679, 29.0035027131376]  //Longitude, latitude
-        ]
-     };
-
-     const simpleFillSymbol = {
-        type: "simple-fill",
-        color: [227, 139, 79, 0.8],  // Orange, opacity 80%
-        outline: {
-            color: [255, 255, 255],
-            width: 1
-        }
-     };
-      
-      const polygonGraphic = new Graphic({
-          geometry: polygon,
-          symbol: simpleFillSymbol,
-
-       });
-       graphicsLayer.add(polygonGraphic);
+      const searchWidget = new Search({
+        view: view
+      });
+      // Adds the search widget below other elements in
+      // the top left corner of the view
+      view.ui.add(searchWidget, {
+        position: "top-left",
+        index: 2
+      });
 
     });
   </script>
