@@ -23,9 +23,10 @@
      "esri/config",
      "esri/Map",
      "esri/views/MapView",
-     "esri/widgets/Search"
+     "esri/widgets/Search",
+     "esri/layers/FeatureLayer"
 
-    ], function(esriConfig,Map, MapView, Search) {
+    ], function(esriConfig,Map, MapView, Search, FeatureLayer) {
 
       
       
@@ -55,6 +56,12 @@
         position: "top-left",
         index: 2
       });
+      
+      const layer = new FeatureLayer({
+        url: "https://services6.arcgis.com/zLhAckIunxPGv1SW/arcgis/rest/services/US_ZIP_LAT_LONG/FeatureServer/0"
+      });
+
+      map.add(layer);
                   
     });
   </script>
