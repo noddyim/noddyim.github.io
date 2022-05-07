@@ -46,6 +46,26 @@
         }
       });
           
+      const layer = new FeatureLayer({
+        url: "https://services6.arcgis.com/zLhAckIunxPGv1SW/arcgis/rest/services/US_ZIP_LAT_LONG/FeatureServer/0"
+      });
+
+      map.add(layer);
+      
+      // Define a pop-up for pCiL
+      const popup_pCiL = {
+        "title": "pCi L",
+        "content": "<b>Zip Code:</b> {ZIP}<br><b>pCi L:</b> {pCiL}<br>"
+      }
+      
+      const pCiL = new FeatureLayer({
+        url: "https://services6.arcgis.com/zLhAckIunxPGv1SW/arcgis/rest/services/US_ZIP_LAT_LONG/FeatureServer/0",
+        outFields: ["ZIP","pCiL"],
+        popupTemplate: popup_pCiL
+      });
+
+      map.add(pCiL);
+      
       //Search
       const searchWidget = new Search({
         view: view
@@ -53,15 +73,9 @@
       // Adds the search widget below other elements in
       // the top left corner of the view
       view.ui.add(searchWidget, {
-        position: "top-left",
+        position: "bottom-right",
         index: 2
       });
-      
-      const layer = new FeatureLayer({
-        url: "https://services6.arcgis.com/zLhAckIunxPGv1SW/arcgis/rest/services/US_ZIP_LAT_LONG/FeatureServer/0"
-      });
-
-      map.add(layer);
                   
     });
   </script>
