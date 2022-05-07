@@ -8,7 +8,7 @@
     html,
     body,
     #viewDiv {
-      padding: 20px;
+      padding: 10px;
       margin: 0;
       height: 90%;
       width: 90%;
@@ -53,7 +53,7 @@
       // Adds the search widget below other elements in
       // the top left corner of the view
       view.ui.add(searchWidget, {
-        position: "top-center",
+        position: "top-left",
         index: 2
       });
       
@@ -61,7 +61,7 @@
         url: "https://services6.arcgis.com/zLhAckIunxPGv1SW/arcgis/rest/services/jd_data/FeatureServer/0"
       });
 
-      map.add(layer);
+      map.add(layer,0);
             
     });
   </script>
