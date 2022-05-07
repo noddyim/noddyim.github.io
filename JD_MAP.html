@@ -24,21 +24,15 @@
      "esri/Map",
      "esri/views/MapView",
      "esri/widgets/Search",
-     "esri/Basemap",
-     "esri/layers/VectorTileLayer",
-     "esri/layers/TileLayer",
+     "esri/layers/FeatureLayer"
 
-    ], function(esriConfig,Map, MapView, Search, Basemap, VectorTileLayer, TileLayer) {
+    ], function(esriConfig,Map, MapView, Search, FeatureLayer) {
 
-      //JD Data Vector
-      const JDvectorTileLayer = new VectorTileLayer({
-          url: "https://vectortileservices6.arcgis.com/zLhAckIunxPGv1SW/arcgis/rest/services/jd_data1/VectorTileServer/resources/styles/root.json"
-      });
+      
       
       esriConfig.apiKey = "AAPKd01249fc47b94ebf950169ad7fac07e2KhOYo3MgaiRiyQ3ohgiLPZubbRFyt5_c9OEViEhWKubugjIWUScFhLN9iEIYri9w";
       const map = new Map({
         basemap: "arcgis-topographic", // Basemap layer
-        layers: [JDvectorTileLayer]
       });         
            
       //MAP
@@ -59,9 +53,15 @@
       // Adds the search widget below other elements in
       // the top left corner of the view
       view.ui.add(searchWidget, {
-        position: "top-left",
+        position: "top-center",
         index: 2
       });
+      
+      const layer = new FeatureLayer({
+        url: "https://services6.arcgis.com/zLhAckIunxPGv1SW/arcgis/rest/services/jd_data/FeatureServer/0"
+      });
+
+      map.add(layer);
             
     });
   </script>
