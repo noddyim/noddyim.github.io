@@ -23,9 +23,10 @@
      "esri/config",
      "esri/Map",
      "esri/views/MapView",
-     "esri/widgets/Search"
+     "esri/widgets/Search",
+     "esri/layers/FeatureLayer"
 
-    ], function(esriConfig,Map, MapView, Search) {
+    ], function(esriConfig,Map, MapView, Search, FeatureLayer) {
 
       esriConfig.apiKey = "AAPKd01249fc47b94ebf950169ad7fac07e2KhOYo3MgaiRiyQ3ohgiLPZubbRFyt5_c9OEViEhWKubugjIWUScFhLN9iEIYri9w";
       const map = new Map({
@@ -36,7 +37,7 @@
       const view = new MapView({
         map: map,
         center: [-104.9850, 39.7392],
-        zoom: 14, // scale: 72223.819286
+        zoom: 12, // scale: 72223.819286
         container: "viewDiv",
         constraints: {
           snapToZoom: false
@@ -53,7 +54,13 @@
         position: "top-left",
         index: 2
       });
-
+      
+      const JDLayer = new FeatureLayer({
+        url: "https://services6.arcgis.com/zLhAckIunxPGv1SW/arcgis/rest/services/jd_zip_codes/FeatureServer/0"
+      });
+      
+      map.add(JDLayer);
+      
     });
   </script>
 </head>
