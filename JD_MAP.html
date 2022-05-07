@@ -76,27 +76,21 @@
         }
       };
       
-      // Create the layer and set the renderer
-      const JD = new FeatureLayer({
-        url: "https://services6.arcgis.com/zLhAckIunxPGv1SW/arcgis/rest/services/US_ZIP_LAT_LONG/FeatureServer/0",
-        renderer: JDRenderer,
-        labelingInfo: [JDLabels]
-      });
-
-      map.add(JD);
-            
       // Define a pop-up for pCiL
       const popup_pCiL = {
         "title": "Average Radon Level: {PCIL}"
       }
       
-      const pCiL = new FeatureLayer({
+      // Create the layer and set the renderer
+      const JD = new FeatureLayer({
         url: "https://services6.arcgis.com/zLhAckIunxPGv1SW/arcgis/rest/services/US_ZIP_LAT_LONG/FeatureServer/0",
+        renderer: JDRenderer,
+        labelingInfo: [JDLabels],
         outFields: ["PCIL"],
         popupTemplate: popup_pCiL
       });
 
-      map.add(pCiL);
+      map.add(JD);     
       
       //Search
       const searchWidget = new Search({
