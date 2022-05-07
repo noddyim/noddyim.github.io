@@ -46,16 +46,6 @@
         }
       });
       
-      const JDRenderer = {
-        "type": "simple",
-        "symbol": {
-          "type": "picture-marker",
-          "url": "https://noddyim.github.io/images/creep1.png",
-          "width": "10px",
-          "height": "10px"
-        }
-      }
-      
       const JDLabels = {
         symbol: {
           type: "text",
@@ -84,7 +74,6 @@
       // Create the layer and set the renderer
       const JD = new FeatureLayer({
         url: "https://services6.arcgis.com/zLhAckIunxPGv1SW/arcgis/rest/services/US_ZIP_LAT_LONG/FeatureServer/0",
-        renderer: JDRenderer,
         labelingInfo: [JDLabels],
         outFields: ["PCIL"],
         popupTemplate: popup_pCiL
