@@ -62,13 +62,14 @@
 
         labelPlacement: "above-center",
         labelExpressionInfo: {
-          expression: "$feature.ZIP"
+          <!--expression: "$feature.ZIP"-->
+          expression: "Radon"
         }
       };
       
       // Define a pop-up for pCiL
       const popup_pCiL = {
-        "title": "Average Radon Level: {PCIL}"
+        "title": "{ZIP} - Average Radon Level: {PCIL}"
       }
       
       // Create the layer and set the renderer
