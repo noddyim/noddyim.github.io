@@ -71,7 +71,7 @@ document.onmousedown = rtclickcheck;
 
         labelPlacement: "above-center",
         labelExpressionInfo: {
-          expression: "$feature.ZONE"
+          expression: "$feature.COUNTY"
         }
       };
       
@@ -85,7 +85,7 @@ document.onmousedown = rtclickcheck;
       const JD = new FeatureLayer({
         url: "https://services6.arcgis.com/zLhAckIunxPGv1SW/arcgis/rest/services/Radon_Levels/FeatureServer/0",
         labelingInfo: [JDLabels],
-        outFields: ["ZONE"],
+        outFields: ["COUNTY"],
         popupTemplate: popup_pCiL
       });
 
