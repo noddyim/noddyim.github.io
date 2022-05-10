@@ -16,6 +16,11 @@ document.onmousedown = rtclickcheck;
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/JDForm.css">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+       function onSubmit(token) {
+         document.getElementById("form").submit();
+       }
+     </script>
   </head>
 <body>
 <form id="form" action="https://formspree.io/f/xlezajbq" method="POST">
@@ -45,7 +50,12 @@ document.onmousedown = rtclickcheck;
       <br class="clear">
       <span class="error">*The message is too short.</span> <span class="empty">*This field is required.</span> </label>
     <div class="clear"></div>
-    <button class="g-recaptcha" data-sitekey="6Le2b90fAAAAAKO_pMhJS7YlNvO3xfXFqflzvLwp" data-type="submit">Submit</button><br/>
+    <div class="g-recaptcha"
+      data-sitekey="_your_site_key_"
+      data-callback="onSubmit"
+      data-size="invisible">
+</div>
+    <button class="g-recaptcha" data-sitekey="6Le2b90fAAAAAKO_pMhJS7YlNvO3xfXFqflzvLwp" data-callback='onSubmit'>Submit</button><br/>
     <input type="reset" value="Reset">
     </div>
   </fieldset>
