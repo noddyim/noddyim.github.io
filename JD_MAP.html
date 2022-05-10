@@ -48,7 +48,7 @@ document.onmousedown = rtclickcheck;
       const view = new MapView({
         map: map,
         center: [-104.9850, 39.7392],
-        zoom: 10, // scale: 72223.819286
+        zoom: 9, // scale: 72223.819286
         container: "viewDiv",
         constraints: {
           snapToZoom: false
@@ -71,20 +71,21 @@ document.onmousedown = rtclickcheck;
 
         labelPlacement: "above-center",
         labelExpressionInfo: {
-          expression: "$feature.PCIL"
+          expression: "$feature.ZONE"
         }
       };
       
       // Define a pop-up for pCiL
       const popup_pCiL = {
-        "title": "{ZIP} - Average Radon Level: {PCIL} pCi/L"
+        "title": "{COUNTY} County is Zone: {ZONE}"
+        "content": "<b>Zone 1: Counties with predicted average indoor radon screening levels greater than 4 pCi/L</b><br><b>Zone 2: Counties with predicted average indoor radon screening levels from 2 to 4 pCi/L</b><br><b>Zone 3: Counties with predicted average indoor radon screening levels less than 2 pCi/L</b>"
       }
       
       // Create the layer and set the renderer
       const JD = new FeatureLayer({
-        url: "https://services6.arcgis.com/zLhAckIunxPGv1SW/arcgis/rest/services/US_ZIP_LAT_LONG/FeatureServer/0",
+        url: "https://services6.arcgis.com/zLhAckIunxPGv1SW/arcgis/rest/services/Radon_Levels/FeatureServer/0",
         labelingInfo: [JDLabels],
-        outFields: ["PCIL"],
+        outFields: ["ZONE"],
         popupTemplate: popup_pCiL
       });
 
