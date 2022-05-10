@@ -28,8 +28,8 @@ text-decoration:none;
 
 body {
 	font: 12px/18px  Arial, Helvetica, sans-serif;
-	color: DodgerBlue;
-	background-color: DarkGreen;
+	color: #005A9C;
+	background-color: #013220;
 	position:relative;
 	min-width:960px;
 
@@ -141,7 +141,7 @@ margin-bottom: 23px;
 	height: 34px;
 	float:left;
 	font: 12px/18px  Arial, Helvetica, sans-serif;
-	color: DodgerBlue;
+	color: #005A9C;
 	box-sizing: border-box;
 	-moz-box-sizing: border-box; /*Firefox 1-3*/
 	-webkit-box-sizing: border-box; /* Safari */
@@ -150,7 +150,7 @@ margin-bottom: 23px;
 #form textarea {
 	height: 293px;
 	overflow: auto;
-	background-color: DarkGreen;
+	background-color: #013220;
 	 border: 1px solid #393553;
 	 	 padding: 7px 12px 8px;
 	width: 100%;
@@ -161,7 +161,7 @@ margin-bottom: 23px;
 	-webkit-box-sizing: border-box; /* Safari */
 	float:left;
 	font: 12px/18px  Arial, Helvetica, sans-serif;
-	color: DodgerBlue;
+	color: #005A9C;
 	margin: 0;
 	
 }
@@ -235,7 +235,7 @@ margin-bottom: 23px;
 	display: none;
 	position: absolute;
 	width: 100%;
-	background-color: DarkGreen;
+	background-color: #013220;
 border: 1px solid #393553;
 		text-align: center;
 	padding: 20px 10px;
