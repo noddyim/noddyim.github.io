@@ -32,7 +32,7 @@ body {
 	background-color: #FFFFFF;
 	position:relative;
 	min-width:960px;
-
+	text-align: center;
 
 }
 
@@ -55,6 +55,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: normal;
 	font-family: 'Marvel', sans-serif ;
 	color: #013220;
+	text-align: center;
 }
 
 h3 {
@@ -130,6 +131,7 @@ ul.list li+li {
 margin-top: -2px;
 padding-right: 35px;
 margin-bottom: 23px;
+text-align: center;
 }
 
 #form input {
