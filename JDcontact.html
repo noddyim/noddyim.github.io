@@ -18,7 +18,6 @@ document.onmousedown = rtclickcheck;
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   </head>
 <body>
-  <br/><br/>
 <form id="form" action="https://formspree.io/f/xlezajbq" method="POST">
   <div class="success_wrapper">
     <div class="success">Feedback successfully submitted!<br>
@@ -47,7 +46,9 @@ document.onmousedown = rtclickcheck;
       <span class="error">*The message is too short.</span> <span class="empty">*This field is required.</span> </label>
     <div class="clear"></div>
     <div class="g-recaptcha" data-sitekey="6Le2b90fAAAAAKO_pMhJS7YlNvO3xfXFqflzvLwp"></div><br/>
-    <div class="btns"><a data-type="submit" class="col1" aria-disabled="true">send</a><a data-type="reset" class="col1">clear</a>
+    <div class="btns">
+      <a data-type="submit" class="col1">send</a>
+      <a data-type="reset" class="col1">clear</a>
       <div class="clear"></div>
     </div>
   </fieldset>
